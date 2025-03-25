@@ -4,8 +4,8 @@
  */
 package Vista;
 
+import Modelo.Dueno;
 import Modelo.Mascota;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,7 +56,9 @@ public class MascotaVista {
         System.out.println("Id del dueño: ");
         int duenoId = leer.nextInt();
         
-        return new Mascota(nombre, especie, raza, edad, fechaNacimiento, sexo, microchipTatuaje, foto, duenoId);
+        Dueno dueno = new Dueno(duenoId, "", "", "", "", "", "");
+        
+        return new Mascota(nombre, especie, raza, edad, fechaNacimiento, sexo, microchipTatuaje, foto, dueno);
         
     }
 }

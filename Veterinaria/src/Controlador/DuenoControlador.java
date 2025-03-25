@@ -32,13 +32,13 @@ public class DuenoControlador {
         
         boolean regresar = true;
         while (regresar){
-            System.out.println("Menu principal ");
+            
             System.out.println("1. Agregar Dueño");
             System.out.println("2. listar Dueños");
             System.out.println("3. Actualizar usuario");
             System.out.println("4. Eliminar usuario");
             System.out.println("5. Buscar usuario por ID");
-            System.out.println("6. Salir del Programa");
+            System.out.println("6. Menu Principal");
             System.out.println(":");
             int opcion = leer.nextInt();
             switch (opcion){
@@ -55,6 +55,18 @@ public class DuenoControlador {
                         System.out.println(dueno);
                     }
                     break;
+                    
+                    case 3:
+    System.out.println("Ingrese el ID del dueño que desea actualizar: ");
+    int idDueno = leer.nextInt();
+    leer.nextLine(); // Consumir el salto de línea
+
+    Dueno duenoActualizado = duenoVista.ingresarDatosDueno(idDueno);
+    duenoDAO.actualizarDueno(duenoActualizado);
+    break;
+                    case 6:
+                        regresar = false;
+                        break;
             }
         }
      }

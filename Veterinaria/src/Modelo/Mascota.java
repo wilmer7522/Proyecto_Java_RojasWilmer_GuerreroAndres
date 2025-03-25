@@ -19,9 +19,9 @@ public class Mascota {
     private String sexo;
     private String microchipTatuaje;
     private String foto;
-    private int duenoId;
+    private Dueno dueno;
 
-    public Mascota(int id, String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, int duenoId) {
+    public Mascota(int id, String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, Dueno dueno) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
@@ -31,10 +31,10 @@ public class Mascota {
         this.sexo = sexo;
         this.microchipTatuaje = microchipTatuaje;
         this.foto = foto;
-        this.duenoId = duenoId;
+        this.dueno = dueno;
     }
 
-    public Mascota(String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, int duenoId) {
+    public Mascota(String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, Dueno dueno) {
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
@@ -43,7 +43,7 @@ public class Mascota {
         this.sexo = sexo;
         this.microchipTatuaje = microchipTatuaje;
         this.foto = foto;
-        this.duenoId = duenoId;
+        this.dueno = dueno;
     }
 
     public int getId() {
@@ -118,12 +118,12 @@ public class Mascota {
         this.foto = foto;
     }
 
-    public int getDuenoId() {
-        return duenoId;
+    public Dueno getDueno() {
+        return dueno;
     }
 
-    public void setDuenoId(int duenoId) {
-        this.duenoId = duenoId;
+    public void setDueno(Dueno dueno) {
+        this.dueno = dueno;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class Mascota {
                 especie + " - " + raza + " - " +
                 edad + " - " + fechaNacimiento + " - " +
                 sexo + " - " + microchipTatuaje + " - " +
-                foto + " - " + duenoId;
+                foto + " - " + dueno;
     }
     
     

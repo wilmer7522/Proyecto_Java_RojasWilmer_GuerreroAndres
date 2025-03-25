@@ -99,7 +99,7 @@ public class Dueno {
     @Override
     public String toString() {
         return id + " - " + nombre + " - " + cedula + " - " + direccion + " - "
-                + telefono + " - " + correo_electronico + contacto_emergencia; 
+                + telefono + " - " + correo_electronico+ " - " + contacto_emergencia; 
     }
     
     

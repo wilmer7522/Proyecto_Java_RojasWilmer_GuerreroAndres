@@ -25,7 +25,7 @@ public class main {
         
         MascotaDAO mascotaDAO = new MascotaDAO();
         MascotaVista mascotaVista = new MascotaVista();
-        MascotaControlador mascotaControlador = new MascotaControlador(mascotaDAO, mascotaVista);
+        MascotaControlador mascotaControlador = new MascotaControlador(mascotaDAO, mascotaVista, duenoDAO);
         
         
         Scanner leer = new Scanner(System.in);

@@ -36,7 +36,7 @@ public class MascotaDAO {
             solicitud.setString(6, mascotas.getSexo());
             solicitud.setString(7, mascotas.getMicrochipTatuaje());
             solicitud.setString(8, mascotas.getFoto());
-            solicitud.setInt(9, mascotas.getDuenoId());
+            solicitud.setInt(9, mascotas.getDueno().getId());
 
             solicitud.executeUpdate();
         } catch (SQLException e) {
@@ -44,22 +44,30 @@ public class MascotaDAO {
         }
     }
 
-    public List<String> obtenerMascotas() {
+    public List<Mascota> obtenerMascotas() {
         String sql = "SELECT * FROM mascotas";
-        List<String> listaMascotas = new ArrayList<>();
+        List<Mascota> listaMascotas = new ArrayList<>();
 
         try (Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql); ResultSet resultado = solicitud.executeQuery();) {
             while (resultado.next()) {
-                listaMascotas.add(resultado.getInt("id") + " - "
-                        + resultado.getString("nombre") + " - "
-                        + resultado.getString("especie") + " - "
-                        + resultado.getString("raza") + " - "
-                        + resultado.getInt("edad") + " - "
-                        + resultado.getString("fecha_nacimiento") + " - "
-                        + resultado.getString("sexo") + " - "
-                        + resultado.getString("microchip_tatuaje") + " - "
-                        + resultado.getString("foto") + " - "
-                        + resultado.getInt("dueno_id"));
+
+                int duenoId = resultado.getInt("dueno_id");
+                Dueno dueno = getDuenoPorId(duenoId); // Obtener el dueño completo
+
+                Mascota mascota = new Mascota(
+                        resultado.getInt("id"),
+                        resultado.getString("nombre"),
+                        resultado.getString("especie"),
+                        resultado.getString("raza"),
+                        resultado.getInt("edad"),
+                        resultado.getString("fecha_nacimiento"),
+                        resultado.getString("sexo"),
+                        resultado.getString("microchip_tatuaje"),
+                        resultado.getString("foto"),
+                        dueno // Ahora tiene el objeto completo
+                );
+
+                listaMascotas.add(mascota);
 
             }
         } catch (SQLException e) {
@@ -67,4 +75,63 @@ public class MascotaDAO {
         }
         return listaMascotas;
     }
+
+    // Obtener dueño completo por ID
+    public Dueno getDuenoPorId(int duenoId) {
+        String sql = "SELECT * FROM duenos WHERE id = ?";
+        Dueno dueno = null;
+
+        try (Connection conexion = conectar(); PreparedStatement solicitud = conexion.prepareStatement(sql)) {
+            solicitud.setInt(1, duenoId);
+            ResultSet resultado = solicitud.executeQuery();
+
+            if (resultado.next()) {
+                dueno = new Dueno(
+                        resultado.getInt("id"),
+                        resultado.getString("nombre"),
+                        resultado.getString("cedula"),
+                        resultado.getString("direccion"),
+                        resultado.getString("telefono"),
+                        resultado.getString("correo_electronico"),
+                        resultado.getString("contacto_emergencia")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dueno;
+
+    }
+    
+    
+    //Mascota por dueño
+    public List<Mascota> obtenerMascotasPorDueno(int duenoId) {
+    String sql = "SELECT * FROM mascotas WHERE dueno_id = ?";
+    List<Mascota> listaMascotas = new ArrayList<>();
+
+    try (Connection conexion = conectar(); PreparedStatement solicitud = conexion.prepareStatement(sql)) {
+        solicitud.setInt(1, duenoId);
+        ResultSet resultado = solicitud.executeQuery();
+
+        while (resultado.next()) {
+            Mascota mascota = new Mascota(
+                resultado.getInt("id"),
+                resultado.getString("nombre"),
+                resultado.getString("especie"),
+                resultado.getString("raza"),
+                resultado.getInt("edad"),
+                resultado.getString("fecha_nacimiento"),
+                resultado.getString("sexo"),
+                resultado.getString("microchip_tatuaje"),
+                resultado.getString("foto"),
+                new Dueno(duenoId, "", "", "", "", "", "") // Solo asignamos el ID del dueño
+            );
+            listaMascotas.add(mascota);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return listaMascotas;
+}
+
 }

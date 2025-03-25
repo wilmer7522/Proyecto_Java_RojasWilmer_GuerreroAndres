@@ -72,5 +72,59 @@ public class DuenoDAO {
         return listaDuenos;
 
     }
+    
+    //Dueño por id
+    public Dueno obtenerDuenoPorId(int duenoId) {
+    String sql = "SELECT * FROM duenos WHERE id = ?";
+    Dueno dueno = null;
+
+    try (Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql)) {
+        solicitud.setInt(1, duenoId);
+        ResultSet resultado = solicitud.executeQuery();
+
+        if (resultado.next()) {
+            dueno = new Dueno(
+                resultado.getInt("id"),
+                resultado.getString("nombre"),
+                resultado.getString("cedula"),
+                resultado.getString("direccion"),
+                resultado.getString("telefono"),
+                resultado.getString("correo_electronico"),
+                resultado.getString("contacto_emergencia")
+            );
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return dueno;
+}
+    
+    
+    
+    public void actualizarDueno(Dueno dueno) {
+    String sql = "UPDATE duenos SET nombre = ?, cedula = ?, direccion = ?, telefono = ?, correo_electronico = ?, contacto_emergencia = ? WHERE id = ?";
+    
+    try (Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql)) {
+        solicitud.setString(1, dueno.getNombre());
+        solicitud.setString(2, dueno.getCedula());
+        solicitud.setString(3, dueno.getDireccion());
+        solicitud.setString(4, dueno.getTelefono());
+        solicitud.setString(5, dueno.getCorreo_electronico());
+        solicitud.setString(6, dueno.getContacto_emergencia());
+        solicitud.setInt(7, dueno.getId());
+        
+        int filasActualizadas = solicitud.executeUpdate();
+        
+        if (filasActualizadas > 0) {
+            System.out.println("Dueño actualizado correctamente.");
+        } else {
+            System.out.println("No se encontró el dueño con ese ID.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
 
 }

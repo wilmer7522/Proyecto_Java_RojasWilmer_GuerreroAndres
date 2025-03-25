@@ -49,4 +49,30 @@ public class DuenoVista {
     }
     
     
+    public Dueno ingresarDatosDueno(int id) {
+    Scanner leer = new Scanner(System.in);
+    
+    System.out.println("Ingrese el nuevo nombre del dueño: ");
+    String nombre = leer.nextLine();
+    
+    System.out.println("Ingrese la nueva cédula: ");
+    String cedula = leer.nextLine();
+    
+    System.out.println("Ingrese la nueva dirección: ");
+    String direccion = leer.nextLine();
+    
+    System.out.println("Ingrese el nuevo teléfono: ");
+    String telefono = leer.nextLine();
+    
+    System.out.println("Ingrese el nuevo correo electrónico: ");
+    String correo = leer.nextLine();
+    
+    System.out.println("Ingrese el nuevo contacto de emergencia: ");
+    String contactoEmergencia = leer.nextLine();
+    
+    return new Dueno(id, nombre, cedula, direccion, telefono, correo, contactoEmergencia);
+}
+
+    
+    
 }
