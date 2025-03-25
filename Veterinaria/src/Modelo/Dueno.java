@@ -14,25 +14,25 @@ public class Dueno {
     private String cedula;
     private String direccion;
     private String telefono;
-    private String correo;
+    private String correo_electronico;
     private String contacto_emergencia;
 
-    public Dueno(int id, String nombre, String cedula, String direccion, String telefono, String correo, String contacto_emergencia) {
+    public Dueno(int id, String nombre, String cedula, String direccion, String telefono, String correo_electronico, String contacto_emergencia) {
         this.id = id;
         this.nombre = nombre;
         this.cedula = cedula;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.correo = correo;
+        this.correo_electronico = correo_electronico;
         this.contacto_emergencia = contacto_emergencia;
     }
 
-    public Dueno(String nombre, String cedula, String direccion, String telefono, String correo, String contacto_emergencia) {
-       this.nombre = nombre;
+    public Dueno(String nombre, String cedula, String direccion, String telefono, String correo_electronico, String contacto_emergencia) {
+        this.nombre = nombre;
         this.cedula = cedula;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.correo = correo;
+        this.correo_electronico = correo_electronico;
         this.contacto_emergencia = contacto_emergencia;
     }
 
@@ -76,12 +76,12 @@ public class Dueno {
         this.telefono = telefono;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getCorreo_electronico() {
+        return correo_electronico;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCorreo_electronico(String correo_electronico) {
+        this.correo_electronico = correo_electronico;
     }
 
     public String getContacto_emergencia() {
@@ -92,10 +92,14 @@ public class Dueno {
         this.contacto_emergencia = contacto_emergencia;
     }
 
+    
+
+    
+
     @Override
     public String toString() {
         return id + " - " + nombre + " - " + cedula + " - " + direccion + " - "
-                + telefono + " - " + correo + contacto_emergencia; 
+                + telefono + " - " + correo_electronico + contacto_emergencia; 
     }
     
     

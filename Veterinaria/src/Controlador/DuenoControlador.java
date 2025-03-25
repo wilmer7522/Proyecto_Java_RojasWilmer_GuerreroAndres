@@ -28,7 +28,7 @@ public class DuenoControlador {
     }
     
     
-     public void iniciar(){
+     public void iniciarDueno(){
         
         boolean regresar = true;
         while (regresar){
@@ -50,9 +50,9 @@ public class DuenoControlador {
                     
                     case 2:
                      System.out.println("Lista de Usuarios ");
-                    List<String> listaUsuarios = duenoDAO.obtenerDuenos();
-                    for (String usuario : listaUsuarios) {
-                        System.out.println(usuario);
+                    List<String> listaDuenos = duenoDAO.obtenerDuenos();
+                    for (String dueno : listaDuenos) {
+                        System.out.println(dueno);
                     }
                     break;
             }
