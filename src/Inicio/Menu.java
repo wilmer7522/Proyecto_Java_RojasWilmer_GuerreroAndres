@@ -17,7 +17,7 @@ public class Menu extends JFrame {
         add(lblTitulo, BorderLayout.NORTH);
 
         // Panel con botones
-        JPanel panelBotones = new JPanel(new GridLayout(4, 1));
+        JPanel panelBotones = new JPanel(new GridLayout(4, 3));
         JButton btnCentroVeterinario = new JButton("Ver informacion del centro veterinario");
         JButton btnCita = new JButton("Agendar cita");
         JButton btnAdopcion = new JButton("Ver dias de adopcion de mascotas");

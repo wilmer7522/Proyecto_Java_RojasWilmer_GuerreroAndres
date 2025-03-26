@@ -1,7 +1,6 @@
 package Vista;
 
 import Controlador.Factura;
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.Connection;
@@ -13,10 +12,8 @@ public class FacturaVista {
         JFrame frame = new JFrame("Generador de Facturas");
         JButton generarBoton = new JButton("Generar Archivo TXT");
 
-        // Suponiendo que tienes una conexión a la base de datos (conn)
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mi_base_de_datos", "usuario", "contraseña");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://b89xagd5xevxesubbvpn-mysql.services.clever-cloud.com:3306/b89xagd5xevxesubbvpn", "ue1oyjioflexxw8f", "RSMHhaXROhzgve0aR7Jb");
 
-        // Instanciar la clase de generación de archivo
         Factura facturaGenerator = new Factura(conn);
 
         generarBoton.addActionListener(new ActionListener() {
@@ -29,7 +26,6 @@ public class FacturaVista {
         frame.setSize(300, 200);
         frame.setLayout(null);
 
-        // Configurar el botón
         generarBoton.setBounds(50, 50, 200, 30);
         frame.add(generarBoton);
 

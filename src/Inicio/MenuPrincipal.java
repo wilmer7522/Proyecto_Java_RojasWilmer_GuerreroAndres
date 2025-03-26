@@ -1,6 +1,9 @@
 package Inicio;
 
+import Controlador.ProductoControlador;
 import Controlador.ReportesControlador;
+import Modelo.ProductoDAO;
+import Vista.ProductosVista;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,5 +29,11 @@ public class MenuPrincipal extends JFrame {
         add(lblTitulo);
         add(btnReportes);
         add(btnSalir);
+
+        ProductoDAO productoDAO = new ProductoDAO();
+        ProductosVista productosVista = new ProductosVista();
+        ProductoControlador productoControlador = new ProductoControlador(productoDAO, productosVista);
+
+        productoControlador.iniciar();
     }
 }
