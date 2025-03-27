@@ -1,86 +1,71 @@
 package Inicio;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.HashMap;
 import Controlador.Main;
 import Vista.RegistrarseDuenos;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-
 public class LoginDuenos extends JFrame {
     private JTextField txtUsuario;
-    private JPasswordField txtPassword;
-    private JButton btnLogin, btnRegistrar;
-    private static final HashMap<String, String> credenciales = new HashMap<>();
+    private JPasswordField txtContrasena;
+    private JButton btnLogin;
 
+    // Diccionario local de usuarios
+    private static HashMap<String, String> credenciales = new HashMap<>();
+
+    // Usuarios predefinidos
     static {
         credenciales.put("admin", "1234");
-        credenciales.put("cliente", "5678");
+        credenciales.put("usuario", "mascota123");
+        credenciales.put("veterinario", "veterinario123");
     }
 
     public LoginDuenos() {
-        setTitle("Login Dueños");
-        setSize(300, 200);
+        setTitle("Inicio de Sesión");
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(null);
+        setLayout(new GridLayout(3, 2));
 
-        JLabel lblUsuario = new JLabel("Usuario:");
-        lblUsuario.setBounds(20, 20, 80, 25);
-        add(lblUsuario);
-
+        add(new JLabel("Usuario:"));
         txtUsuario = new JTextField();
-        txtUsuario.setBounds(100, 20, 150, 25);
         add(txtUsuario);
 
-        JLabel lblPassword = new JLabel("Contraseña:");
-        lblPassword.setBounds(20, 60, 80, 25);
-        add(lblPassword);
+        add(new JLabel("Contraseña:"));
+        txtContrasena = new JPasswordField();
+        add(txtContrasena);
 
-        txtPassword = new JPasswordField();
-        txtPassword.setBounds(100, 60, 150, 25);
-        add(txtPassword);
-
-        btnLogin = new JButton("Iniciar sesión");
-        btnLogin.setBounds(80, 100, 130, 30);
+        btnLogin = new JButton("Iniciar Sesión");
         add(btnLogin);
 
-        btnRegistrar = new JButton("Registrarse");
-        btnRegistrar.setBounds(80, 140, 130, 30);
-        add(btnRegistrar);
-
-        btnLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                validarCredenciales();
-            }
-        });
-
-        btnRegistrar.addActionListener(e -> {
-            new RegistrarseDuenos(this);
-            setVisible(false);
-        });
+        btnLogin.addActionListener(e -> autenticar());
 
         setVisible(true);
     }
 
-    private void validarCredenciales() {
+    private void autenticar() {
         String usuario = txtUsuario.getText();
-        String password = new String(txtPassword.getPassword());
+        String contrasena = new String(txtContrasena.getPassword());
 
-        if (credenciales.containsKey(usuario) && credenciales.get(usuario).equals(password)) {
-            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
-            this.dispose();
-            Main.mostrarMenu();
+        if (credenciales.containsKey(usuario) && credenciales.get(usuario).equals(contrasena)) {
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            abrirMenuPrincipal();
         } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            int respuesta = JOptionPane.showConfirmDialog(this, "Usuario no encontrado. ¿Deseas registrarte?", "Registro", JOptionPane.YES_NO_OPTION);
+            if (respuesta == JOptionPane.YES_OPTION) {
+                new RegistrarseDuenos(this);
+                setVisible(false);
+            }
         }
     }
 
-    public void registrarUsuario(String usuario, String contrasena) {
-        if (!credenciales.containsKey(usuario)) {
-            credenciales.put(usuario, contrasena);
-        }
+    private void abrirMenuPrincipal() {
+        this.dispose();
+        Main.mostrarMenu();
+    }
+
+    public static void registrarUsuario(String usuario, String contrasena) {
+        credenciales.put(usuario, contrasena);
     }
 }

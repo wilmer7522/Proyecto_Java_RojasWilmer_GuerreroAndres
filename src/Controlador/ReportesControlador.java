@@ -20,5 +20,4 @@ public class ReportesControlador {
 
         vista.mostrarReportes(totalVisitas, totalProcedimientos, totalVacunas, totalFacturacion, dao.obtenerServiciosMasSolicitados());
     }
-
 }

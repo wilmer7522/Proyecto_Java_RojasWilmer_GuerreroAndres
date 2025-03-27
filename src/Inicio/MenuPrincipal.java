@@ -1,7 +1,6 @@
 package Inicio;
 
 import Vista.MenuProductos;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,24 +10,26 @@ public class MenuPrincipal extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(4, 1));
 
         JLabel lblTitulo = new JLabel("Bienvenido al Sistema", SwingConstants.CENTER);
         JButton btnProductos = new JButton("Gestión de Productos");
         JButton btnReportes = new JButton("Ver Reportes");
+        JButton btnConsultas = new JButton("Ver Consultas Médicas");
+        JButton btnProcedimientos = new JButton("Ver Cirugías y Procedimientos Especiales");
         JButton btnSalir = new JButton("Salir");
 
         btnProductos.addActionListener(e -> new MenuProductos(this));
-        btnReportes.addActionListener(e -> JOptionPane.showMessageDialog(this, "Mostrando reportes..."));
+        btnReportes.addActionListener(e -> new MenuReportes(this));
+        btnConsultas.addActionListener(e -> new MenuConsultas(this));
+        btnProcedimientos.addActionListener(e -> new MenuProcedimientos(this));
         btnSalir.addActionListener(e -> System.exit(0));
 
         add(lblTitulo);
         add(btnProductos);
         add(btnReportes);
+        add(btnConsultas);
+        add(btnProcedimientos);
         add(btnSalir);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MenuPrincipal().setVisible(true));
     }
 }

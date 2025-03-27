@@ -58,7 +58,7 @@ public class ProductoControlador {
                     if (listaProductos.isEmpty()) {
                         System.out.println("No hay productos registrados");
                     } else {
-                        productosVista.mostrarProductos(listaProductos);
+                        productosVista.agregarProductos(listaProductos);
                     }
                     break;
 

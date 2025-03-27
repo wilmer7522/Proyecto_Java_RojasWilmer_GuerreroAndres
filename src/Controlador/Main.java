@@ -1,7 +1,6 @@
 package Controlador;
 
 import Inicio.LoginDuenos;
-import Inicio.MenuPrincipal;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +8,7 @@ public class Main {
     }
 
     public static void mostrarMenu() {
-        MenuPrincipal menu = new MenuPrincipal();
+        Inicio.MenuPrincipal menu = new Inicio.MenuPrincipal();
         menu.setVisible(true);
     }
 }

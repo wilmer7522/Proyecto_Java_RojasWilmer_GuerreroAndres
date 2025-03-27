@@ -49,11 +49,11 @@ public class VentanaAgregarProducto extends JFrame {
                     Integer.parseInt(txtProveedor.getText())
             );
             if (productoDAO.insertarProductos(producto)) {
-                JOptionPane.showMessageDialog(this, "Producto agregado exitosamente.");
+                JOptionPane.showMessageDialog(this, "Producto agregado exitosamente");
                 dispose();
                 menuAnterior.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(this, "Error al agregar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error al agregar el producto", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 

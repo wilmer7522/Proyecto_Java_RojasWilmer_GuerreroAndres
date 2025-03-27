@@ -1,4 +1,3 @@
-/*
 package Vista;
 
 import Controlador.Factura;
@@ -33,4 +32,3 @@ class FacturaVista {
         frame.setVisible(true);
     }
 }
- */
