@@ -1,6 +1,6 @@
 package Inicio;
 
-import Vista.MenuProductos;
+import Inicio.MenuProductos;
 import javax.swing.*;
 import java.awt.*;
 

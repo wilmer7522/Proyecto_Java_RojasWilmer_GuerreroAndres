@@ -1,4 +1,6 @@
-package Vista;
+package Inicio;
+
+import Vista.*;
 
 import javax.swing.*;
 import java.awt.*;

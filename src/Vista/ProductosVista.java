@@ -2,9 +2,10 @@ package Vista;
 
 import Modelo.Productos;
 import javax.swing.*;
+import java.util.List;
 
 public class ProductosVista {
-    public Productos agregarProductos() {
+    public Productos agregarProductos(List<Productos> listaProductos) {
         JTextField nombreField = new JTextField();
         JTextField tipoField = new JTextField();
         JTextField fabricanteField = new JTextField();

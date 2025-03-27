@@ -1,71 +1,85 @@
 package Inicio;
 
+import Vista.RegistrarseDuenos;
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import Controlador.Main;
-import Vista.RegistrarseDuenos;
 
 public class LoginDuenos extends JFrame {
     private JTextField txtUsuario;
-    private JPasswordField txtContrasena;
-    private JButton btnLogin;
+    private JPasswordField txtPassword;
+    private JButton btnLogin, btnRegistrar;
+    private static final HashMap<String, String> credenciales = new HashMap<>();
 
-    // Diccionario local de usuarios
-    private static HashMap<String, String> credenciales = new HashMap<>();
-
-    // Usuarios predefinidos
     static {
-        credenciales.put("admin", "1234");
-        credenciales.put("usuario", "mascota123");
-        credenciales.put("veterinario", "veterinario123");
+        credenciales.put("admin", "1234");  // Usuario: admin, Contraseña: 1234
+        credenciales.put("cliente", "5678");
     }
 
     public LoginDuenos() {
-        setTitle("Inicio de Sesión");
-        setSize(400, 300);
+        setTitle("Login Dueños");
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(3, 2));
+        setLayout(null);
 
-        add(new JLabel("Usuario:"));
+        JLabel lblUsuario = new JLabel("Usuario:");
+        lblUsuario.setBounds(20, 20, 80, 25);
+        add(lblUsuario);
+
         txtUsuario = new JTextField();
+        txtUsuario.setBounds(100, 20, 150, 25);
         add(txtUsuario);
 
-        add(new JLabel("Contraseña:"));
-        txtContrasena = new JPasswordField();
-        add(txtContrasena);
+        JLabel lblPassword = new JLabel("Contraseña:");
+        lblPassword.setBounds(20, 60, 80, 25);
+        add(lblPassword);
 
-        btnLogin = new JButton("Iniciar Sesión");
+        txtPassword = new JPasswordField();
+        txtPassword.setBounds(100, 60, 150, 25);
+        add(txtPassword);
+
+        btnLogin = new JButton("Iniciar sesión");
+        btnLogin.setBounds(80, 100, 130, 30);
         add(btnLogin);
 
-        btnLogin.addActionListener(e -> autenticar());
+        btnRegistrar = new JButton("Registrarse");
+        btnRegistrar.setBounds(80, 140, 130, 30);
+        add(btnRegistrar);
+
+        btnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                validarCredenciales();
+            }
+        });
+
+        btnRegistrar.addActionListener(e -> {
+            new RegistrarseDuenos(this);
+            setVisible(false);
+        });
 
         setVisible(true);
     }
 
-    private void autenticar() {
+    private void validarCredenciales() {
         String usuario = txtUsuario.getText();
-        String contrasena = new String(txtContrasena.getPassword());
+        String password = new String(txtPassword.getPassword());
 
-        if (credenciales.containsKey(usuario) && credenciales.get(usuario).equals(contrasena)) {
-            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            abrirMenuPrincipal();
+        if (credenciales.containsKey(usuario) && credenciales.get(usuario).equals(password)) {
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+            this.dispose();
+            Main.mostrarMenu();
         } else {
-            int respuesta = JOptionPane.showConfirmDialog(this, "Usuario no encontrado. ¿Deseas registrarte?", "Registro", JOptionPane.YES_NO_OPTION);
-            if (respuesta == JOptionPane.YES_OPTION) {
-                new RegistrarseDuenos(this);
-                setVisible(false);
-            }
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void abrirMenuPrincipal() {
-        this.dispose();
-        Main.mostrarMenu();
-    }
-
-    public static void registrarUsuario(String usuario, String contrasena) {
-        credenciales.put(usuario, contrasena);
+    public void registrarUsuario(String usuario, String contrasena) {
+        if (!credenciales.containsKey(usuario)) {
+            credenciales.put(usuario, contrasena);
+        }
     }
 }

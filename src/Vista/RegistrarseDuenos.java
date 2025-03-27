@@ -41,9 +41,9 @@ public class RegistrarseDuenos extends JFrame {
 
         if (!usuario.isEmpty() && !contrasena.isEmpty()) {
             login.registrarUsuario(usuario, contrasena);
-            JOptionPane.showMessageDialog(this, "Registro exitoso. Ahora puedes iniciar sesión.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            login.setVisible(true); // Muestra de nuevo la pantalla de login
+            login.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Debe completar ambos campos", "Error", JOptionPane.ERROR_MESSAGE);
         }
