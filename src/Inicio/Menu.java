@@ -17,6 +17,7 @@ public class Menu extends JFrame {
         JButton btnProductos = new JButton("Productos");
         JButton btnProcedimientos = new JButton("Procedimientos");
         JButton btnReportes = new JButton("Reportes");
+        JButton btnMenuPrincipal = new JButton("Menu Principal");
         JButton btnSalir = new JButton("Salir");
 
         // Accion de los botones para abrir los menus correspondientes
@@ -40,6 +41,11 @@ public class Menu extends JFrame {
             new MenuReportes(this);
         });
 
+        btnMenuPrincipal.addActionListener(e -> {
+            dispose();
+            new MenuPrincipal(this);
+        });
+
         btnSalir.addActionListener(e -> {
             System.exit(0);
         });
@@ -51,11 +57,12 @@ public class Menu extends JFrame {
         add(btnProcedimientos);
         add(btnReportes);
         add(btnSalir);
+        add(btnMenuPrincipal);
 
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new Menu();
+    public void main(String[] args) {
+        new MenuPrincipal(this);
     }
 }

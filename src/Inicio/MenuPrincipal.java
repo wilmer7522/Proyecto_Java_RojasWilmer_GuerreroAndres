@@ -1,23 +1,21 @@
 package Inicio;
 
-import Modelo.ProductoDAO;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class MenuPrincipal extends JFrame {
-    public MenuPrincipal() {
+    public MenuPrincipal(Menu menu) {
         setTitle("Menú Principal");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(4, 1));
+        setLayout(new GridLayout(6, 1));
 
         JLabel lblTitulo = new JLabel("Bienvenido al Sistema", SwingConstants.CENTER);
-        JButton btnProductos = new JButton("Gestión de Productos");
+        JButton btnProductos = new JButton("Gestion de Productos");
         JButton btnReportes = new JButton("Ver Reportes");
-        JButton btnConsultas = new JButton("Ver Consultas Médicas");
-        JButton btnProcedimientos = new JButton("Ver Cirugías y Procedimientos Especiales");
+        JButton btnConsultas = new JButton("Ver Consultas Medicas");
+        JButton btnProcedimientos = new JButton("Ver Cirugias y Procedimientos Especiales");
         JButton btnSalir = new JButton("Salir");
 
         btnProductos.addActionListener(e -> new MenuProductos(this));
