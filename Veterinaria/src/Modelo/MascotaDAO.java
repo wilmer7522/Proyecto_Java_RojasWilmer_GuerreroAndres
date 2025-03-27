@@ -21,6 +21,8 @@ public class MascotaDAO {
 
     //Metodo para conectar a la BBDD
     private Connection conectar() throws SQLException {
+        
+        Connection conexion = null;
         return DriverManager.getConnection(URL, USUARIO, PASSWORD);
     }
 

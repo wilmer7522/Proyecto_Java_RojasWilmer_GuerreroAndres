@@ -33,7 +33,7 @@ public class main {
         boolean regresar = true;
         
         while (regresar) {            
-            System.out.println("Menu Principal");
+//            System.out.println("Menu Principal");
             System.out.println("1. Dueños");
             System.out.println("2. Mascotas");
             

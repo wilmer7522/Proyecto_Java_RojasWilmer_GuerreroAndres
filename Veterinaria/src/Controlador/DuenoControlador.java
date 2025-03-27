@@ -24,7 +24,7 @@ public class DuenoControlador {
     public DuenoControlador(DuenoDAO duenoDAO, DuenoVista duenoVista) {
         this.duenoDAO = duenoDAO;
         this.duenoVista = duenoVista;
-        this.leer = leer = new Scanner(System.in);
+        this.leer = new Scanner(System.in);
     }
     
     
