@@ -1,6 +1,7 @@
 package Inicio;
 
-import Inicio.MenuProductos;
+import Modelo.ProductoDAO;
+
 import javax.swing.*;
 import java.awt.*;
 

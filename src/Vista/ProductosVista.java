@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.util.List;
 
 public class ProductosVista {
-    public Productos agregarProductos(List<Productos> listaProductos) {
+    public Productos agregarProductos() {
         JTextField nombreField = new JTextField();
         JTextField tipoField = new JTextField();
         JTextField fabricanteField = new JTextField();
@@ -38,5 +38,9 @@ public class ProductosVista {
             }
         }
         return null;
+    }
+
+    public void mostrarProductos(List<Productos> listaProductos) {
+
     }
 }

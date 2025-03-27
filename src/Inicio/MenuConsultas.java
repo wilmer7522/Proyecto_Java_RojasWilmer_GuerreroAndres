@@ -6,22 +6,22 @@ import java.awt.*;
 import java.sql.*;
 
 public class MenuConsultas extends JFrame {
-    public MenuConsultas(MenuPrincipal menuPrincipal) {
+
+    public MenuConsultas(JFrame menuAnterior) {
         setTitle("Gestión de Consultas Médicas");
-        setSize(600, 400);
+        setSize(600, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(5, 1));
+        setLayout(new GridLayout(6, 1));
 
-        JButton btnVer = new JButton("Ver Consultas");
         JButton btnVolver = new JButton("Volver");
 
-        btnVer.addActionListener(e -> mostrarConsultas());
-        btnVolver.addActionListener(e -> dispose());
+        btnVolver.addActionListener(e -> {
+            dispose();
+            menuAnterior.setVisible(true);
+        });
 
-        add(btnVer);
         add(btnVolver);
-
         setVisible(true);
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 public class MenuReportes extends JFrame {
     private ReportesDAO reportesDAO;
 
-    public MenuReportes(MenuPrincipal menuPrincipal) {
+    public MenuReportes(JFrame menuAnterior) {
         reportesDAO = new ReportesDAO();
 
         setTitle("Menu de Reportes");
@@ -23,6 +23,7 @@ public class MenuReportes extends JFrame {
         JButton btnFacturacion = new JButton("Total facturado");
         JButton btnServicios = new JButton("Servicios mas solicitados");
         JButton btnVeterinarios = new JButton("Desempeño de veterinarios");
+        JButton btnSalir = new JButton("Salir");
 
         btnVisitas.addActionListener(e -> mostrarMensaje("Total de visitas", reportesDAO.obtenerTotalVisitas() + " visitas"));
         btnProcedimientos.addActionListener(e -> mostrarMensaje("Total de procedimientos", reportesDAO.obtenerTotalProcedimientos() + " procedimientos"));
@@ -38,6 +39,7 @@ public class MenuReportes extends JFrame {
         add(btnFacturacion);
         add(btnServicios);
         add(btnVeterinarios);
+        add(btnSalir);
 
         setVisible(true);
     }
