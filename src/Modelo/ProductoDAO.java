@@ -25,7 +25,7 @@ public class ProductoDAO {
         }
     }
 
-    public List<Productos> obtenerProductos() {
+    public static List<Productos> obtenerProductos() {
         List<Productos> listaProductos = new ArrayList<>();
         String sql = "SELECT * FROM inventario";
 

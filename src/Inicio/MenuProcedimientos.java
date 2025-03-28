@@ -10,7 +10,7 @@ public class MenuProcedimientos extends JFrame {
     public MenuProcedimientos(JFrame menuAnterior) {
         procedimientosDAO = new ProcedimientosDAO();
 
-        setTitle("Gestión de Procedimientos Médicos");
+        setTitle("Gestion de Procedimientos Medicos");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

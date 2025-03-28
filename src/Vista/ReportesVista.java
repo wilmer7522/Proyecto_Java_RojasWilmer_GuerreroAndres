@@ -20,14 +20,12 @@ public class ReportesVista extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Panel superior con la informacion general
         JPanel panelSuperior = new JPanel(new GridLayout(2, 1));
         lblVisitas = new JLabel("Total Visitas: ");
-        lblFacturacion = new JLabel("Facturación Total: ");
+        lblFacturacion = new JLabel("Facturacion Total: ");
         panelSuperior.add(lblVisitas);
         panelSuperior.add(lblFacturacion);
 
-        // Tabla para mostrar los servicios mas solicitados
         String[] columnas = {"Servicio / Producto", "Cantidad"};
         modeloTabla = new DefaultTableModel(columnas, 0);
         tablaServicios = new JTable(modeloTabla);
@@ -48,7 +46,7 @@ public class ReportesVista extends JFrame {
         lblVisitas.setText("Total Visitas: " + totalVisitas);
         lblFacturacion.setText("Facturación Total: $" + totalFacturacion);
 
-        StringBuilder serviciosTexto = new StringBuilder("Servicios Más Solicitados:\n");
+        StringBuilder serviciosTexto = new StringBuilder("Servicios Mas Solicitados:\n");
         for (String servicio : serviciosMasSolicitados) {
             serviciosTexto.append("- ").append(servicio).append("\n");
         }

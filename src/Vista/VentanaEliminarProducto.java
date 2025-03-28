@@ -1,7 +1,6 @@
 package Vista;
 
 import Modelo.ProductoDAO;
-
 import javax.swing.*;
 import java.awt.*;
 

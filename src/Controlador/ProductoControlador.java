@@ -1,3 +1,4 @@
+/*
 package Controlador;
 
 import Modelo.ProductoDAO;
@@ -62,7 +63,7 @@ public class ProductoControlador {
                         productosVista.mostrarProductos(listaProductos);
                     }
                     break;
-/*
+
                 case 3:
                     // Actualizar producto
                     try {
@@ -92,7 +93,7 @@ public class ProductoControlador {
                         System.out.println("Ingresa un número válido");
                     }
                     break;
-*/
+
                 case 4:
                     // Eliminar producto
                     try {
@@ -146,3 +147,4 @@ public class ProductoControlador {
         leer.close();
     }
 }
+*/

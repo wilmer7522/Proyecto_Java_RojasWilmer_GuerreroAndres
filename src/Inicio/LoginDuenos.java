@@ -14,7 +14,7 @@ public class LoginDuenos extends JFrame {
     private static final HashMap<String, String> credenciales = new HashMap<>();
 
     static {
-        credenciales.put("admin", "1234");  // Usuario: admin, Contraseña: 1234
+        credenciales.put("admin", "1234");
         credenciales.put("cliente", "5678");
     }
 

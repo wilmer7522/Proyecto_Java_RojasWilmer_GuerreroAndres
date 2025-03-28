@@ -39,8 +39,4 @@ public class ProductosVista {
         }
         return null;
     }
-
-    public void mostrarProductos(List<Productos> listaProductos) {
-
-    }
 }

@@ -1,58 +1,51 @@
 package Vista;
 
-import Modelo.ProductoDAO;
 import Modelo.Productos;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
 public class VentanaListarProductos extends JFrame {
-    public VentanaListarProductos(JFrame menuAnterior) {
-        setTitle("Lista de Productos");
+    private DefaultTableModel modelo;
+    private JTable tablaProductos;
+
+    public VentanaListarProductos(List<Productos> productos) {
+        setTitle("Lista de Productos en Inventario");
         setSize(600, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Modelo de la tabla
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID");
-        model.addColumn("Nombre");
-        model.addColumn("Tipo");
-        model.addColumn("Fabricante");
-        model.addColumn("Stock");
-        model.addColumn("Vencimiento");
-        model.addColumn("Proveedor ID");
+        String[] columnas = {"ID", "Nombre", "Tipo", "Fabricante", "Stock", "Vence", "Proveedor"};
+        modelo = new DefaultTableModel(columnas, 0);
+        actualizarTabla(productos);
 
-        JTable table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
+        tablaProductos = new JTable(modelo);
+        JScrollPane scrollPane = new JScrollPane(tablaProductos);
 
-        // Obtener productos desde la base de datos
-        ProductoDAO productoDAO = new ProductoDAO();
-        List<Productos> productos = productoDAO.obtenerProductos();
-        for (Productos producto : productos) {
-            model.addRow(new Object[]{
-                    producto.getId(),
-                    producto.getNombre(),
-                    producto.getTipo(),
-                    producto.getFabricante(),
-                    producto.getCantidad_stock(),
-                    producto.getFecha_vencimiento(),
-                    producto.getProveedor_id()
-            });
-        }
-
+        // Botón para cerrar la ventana
         JButton btnVolver = new JButton("Volver");
-        btnVolver.addActionListener(e -> {
-            dispose();
-            menuAnterior.setVisible(true);
-        });
+        btnVolver.addActionListener(e -> dispose());
 
         add(scrollPane, BorderLayout.CENTER);
         add(btnVolver, BorderLayout.SOUTH);
 
         setVisible(true);
+    }
+
+    public void actualizarTabla(List<Productos> productos) {
+        modelo.setRowCount(0);
+        for (Productos p : productos) {
+            modelo.addRow(new Object[]{
+                    p.getId(),
+                    p.getNombre(),
+                    p.getTipo(),
+                    p.getFabricante(),
+                    p.getCantidad_stock(),
+                    p.getFecha_vencimiento(),
+                    p.getProveedor_id()
+            });
+        }
     }
 }

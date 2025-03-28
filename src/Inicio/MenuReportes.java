@@ -29,9 +29,14 @@ public class MenuReportes extends JFrame {
         btnProcedimientos.addActionListener(e -> mostrarMensaje("Total de procedimientos", reportesDAO.obtenerTotalProcedimientos() + " procedimientos"));
         btnVacunas.addActionListener(e -> mostrarMensaje("Total de vacunas aplicadas", reportesDAO.obtenerTotalVacunas() + " vacunas aplicadas"));
         btnFacturacion.addActionListener(e -> mostrarMensaje("Total facturado", "$ " + reportesDAO.obtenerTotalFacturacion()));
-
         btnServicios.addActionListener(e -> mostrarLista("Servicios mas solicitados", reportesDAO.obtenerServiciosMasSolicitados()));
         btnVeterinarios.addActionListener(e -> mostrarLista("Desempeño de veterinarios", reportesDAO.obtenerDesempenoVeterinarios()));
+        btnSalir.addActionListener(e -> {
+            dispose();
+            if (menuAnterior != null) {
+                menuAnterior.setVisible(true);
+            }
+        });
 
         add(btnVisitas);
         add(btnProcedimientos);

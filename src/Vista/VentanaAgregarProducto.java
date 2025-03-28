@@ -2,12 +2,18 @@ package Vista;
 
 import Modelo.ProductoDAO;
 import Modelo.Productos;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class VentanaAgregarProducto extends JFrame {
-    public VentanaAgregarProducto(JFrame menuAnterior) {
+    private JFrame menuAnterior;
+    private VentanaListarProductos ventanaListarProductos;
+
+    public VentanaAgregarProducto(JFrame menuAnterior, VentanaListarProductos ventanaListarProductos) {
+        this.menuAnterior = menuAnterior;
+        this.ventanaListarProductos = ventanaListarProductos;
+
         setTitle("Agregar Producto");
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -38,22 +44,30 @@ public class VentanaAgregarProducto extends JFrame {
         JButton btnVolver = new JButton("Volver");
 
         btnGuardar.addActionListener(e -> {
-            ProductoDAO productoDAO = new ProductoDAO();
-            Productos producto = new Productos(
-                    0, // ID autogenerado
-                    txtNombre.getText(),
-                    txtTipo.getText(),
-                    txtFabricante.getText(),
-                    Integer.parseInt(txtCantidad.getText()),
-                    txtVencimiento.getText(),
-                    Integer.parseInt(txtProveedor.getText())
-            );
-            if (productoDAO.insertarProductos(producto)) {
-                JOptionPane.showMessageDialog(this, "Producto agregado exitosamente");
-                dispose();
-                menuAnterior.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al agregar el producto", "Error", JOptionPane.ERROR_MESSAGE);
+            try {
+                ProductoDAO productoDAO = new ProductoDAO();
+                Productos producto = new Productos(
+                        0,
+                        txtNombre.getText(),
+                        txtTipo.getText(),
+                        txtFabricante.getText(),
+                        Integer.parseInt(txtCantidad.getText()),
+                        txtVencimiento.getText(),
+                        Integer.parseInt(txtProveedor.getText())
+                );
+
+                if (productoDAO.insertarProductos(producto)) {
+                    JOptionPane.showMessageDialog(this, "Producto agregado exitosamente");
+
+                    List<Productos> productosActualizados = productoDAO.obtenerProductos();
+                    ventanaListarProductos.actualizarTabla(productosActualizados);
+
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al agregar el producto", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Ingrese valores válidos en los campos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
