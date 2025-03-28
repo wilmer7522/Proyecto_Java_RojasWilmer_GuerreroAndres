@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
+import Controlador.DuenoControlador;
 import Modelo.Dueno;
+import Modelo.DuenoDAO;
 import Vista.DuenoVista;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DuenoVistaFrame extends javax.swing.JFrame {
 private DuenoVista duenoVista;
+private DuenoDAO duenoDAO;
 
     /**
      * Creates new form DuenoVistaFrame
@@ -20,19 +23,22 @@ private DuenoVista duenoVista;
     public DuenoVistaFrame() {
         initComponents();
         duenoVista = new DuenoVista();
-        cargarTablaDuenos();
+        duenoDAO = new DuenoDAO();
     }
     
     
-    private void cargarTablaDuenos() {
-    DefaultTableModel modelo = (DefaultTableModel) tablaDueno.getModel();
-    modelo.setRowCount(0); // Limpiar tabla antes de cargar datos
-
-    List<Dueno> listaDuenos = duenoVista.mostrarDuenos(duenos); // Obtener lista de dueños
-    for (Dueno d : listaDuenos) {
-        modelo.addRow(new Object[]{d.getId(), d.getNombre(), d.getCedula(), d.getDireccion(), d.getTelefono(), d.getCorreoElectronico(), d.getContactoEmergencia()});
-    }
+    private void limpiarCampos() {
+    txtNombre.setText("");
+    txtCedula.setText("");
+    txtDireccion.setText("");
+    txtTelefono.setText("");
+    txtCorreo_Electronico.setText("");
+    txtContacto_Emergencia.setText("");
 }
+
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -266,10 +272,60 @@ private DuenoVista duenoVista;
         // TODO add your handling code here:
         
         
+       
+    // Capturar datos del formulario
+    String nombre = txtNombre.getText();
+    String cedula = txtCedula.getText();
+    String direccion = txtDireccion.getText();
+    String telefono = txtTelefono.getText();
+    String correo = txtCorreo_Electronico.getText();
+    String contactoEmergencia = txtContacto_Emergencia.getText();
+
+    // Verificar que los campos no estén vacíos
+    if (nombre.isEmpty()){
+        javax.swing.JOptionPane.showMessageDialog(this, "El Nombre es obligatorio.");
+        return;}
+        
+       if  (cedula.isEmpty()){
+        javax.swing.JOptionPane.showMessageDialog(this, "La Cedula es obligatoria.");
+       
+        return;}
+       
+        if (telefono.isEmpty()){
+        javax.swing.JOptionPane.showMessageDialog(this, "El Telefono es obligatorio.");
+        return;}
+        
+    
+
+    // Crear objeto dueño
+    Dueno nuevoDueno = new Dueno(nombre, cedula, direccion, telefono, correo, contactoEmergencia);
+
+    // Llamar al controlador para agregarlo
+    DuenoControlador controlador = new DuenoControlador(duenoDAO);
+    boolean agregado = controlador.agregarDueno(nuevoDueno);
+
+    if (agregado) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Dueño agregado exitosamente.");
+        limpiarCampos();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error al agregar el dueño.");
+    }
+
+
+        
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
+        
+     
+    DuenoControlador controlador = new DuenoControlador(duenoDAO);
+    controlador.cargarDuenosEnTabla(tablaDueno);
+
+
+
+
         
         
         
@@ -277,6 +333,8 @@ private DuenoVista duenoVista;
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
+        DuenoVistaActualizarFrame duenoVistaActualizar = new DuenoVistaActualizarFrame(); // Crear la ventana
+    duenoVistaActualizar.setVisible(true); // Hacerla visible
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIdActionPerformed
@@ -294,6 +352,13 @@ private DuenoVista duenoVista;
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        
+        DuenoVistaEliminarFrame duenoVistaEliminar = new DuenoVistaEliminarFrame();// Crea una nueva ventana de Dueño
+       
+        
+        duenoVistaEliminar.setVisible(true); // La hace visible
+    
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

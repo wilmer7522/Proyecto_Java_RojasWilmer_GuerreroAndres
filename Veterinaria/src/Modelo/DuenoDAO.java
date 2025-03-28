@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Modelo.Dueno;
+
 /**
  *
  * @author wilmer
@@ -29,7 +31,7 @@ public class DuenoDAO {
     }
 
     //Crear (insert)
-    public void insertarDueno(Dueno duenos) {
+    public boolean insertarDueno(Dueno duenos) {
         String sql = "insert into duenos (nombre, cedula, direccion, telefono, correo_electronico, contacto_emergencia) values (?,?,?,?,?,?)";
         try (
                 Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql)) {
@@ -41,30 +43,42 @@ public class DuenoDAO {
             solicitud.setString(5, duenos.getCorreo_electronico());
             solicitud.setString(6, duenos.getContacto_emergencia());
 
-            //Ejecucion de la solicitud
-            solicitud.executeUpdate();
-            System.out.println("Dueños ingresado de manera exitosa");
+            int filas = solicitud.executeUpdate();
+             //solicitud.executeUpdate();
+             
+             return filas > 0;
+            //System.out.println("Dueños ingresado de manera exitosa");
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
+            
         }
     }
 
     //Leer
     //
-    public List<String> obtenerDuenos() {
+    public List<Dueno> obtenerDuenos() {
+        List<Dueno> listaDuenos = new ArrayList<>();
         String sql = "select * from duenos";
-        List<String> listaDuenos = new ArrayList<>();
-        try (
+        
+        try ( 
                 Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql); ResultSet resultado = solicitud.executeQuery();) {
             while (resultado.next()) {
-                listaDuenos.add(resultado.getInt("id")
-                        + " - " + resultado.getString("nombre") + " - "
-                        + resultado.getString("cedula") + " - "
-                        + resultado.getString("direccion") + " - "
-                        + resultado.getString("telefono") + " - "
-                        + resultado.getString("correo_electronico") + " - "
-                        + resultado.getString("contacto_emergencia"));
+                
+                Dueno D = new Dueno(
+             resultado.getInt(1),
+               resultado.getString(2),
+               resultado.getString(3),
+          resultado.getString(4),
+               resultado.getString(5),
+                resultado.getString(6),
+                resultado.getNString(7)
+                        );
+                listaDuenos.add(D);
+                
+                
+              
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,30 +114,106 @@ public class DuenoDAO {
 }
     
     
-    
-    public void actualizarDueno(Dueno dueno) {
-    String sql = "UPDATE duenos SET nombre = ?, cedula = ?, direccion = ?, telefono = ?, correo_electronico = ?, contacto_emergencia = ? WHERE id = ?";
+    //Actualizar Dueno
+    public boolean actualizarDueno(Dueno dueno) {
+        
+        System.out.println("🔎 Dueno obtenido - ID: " + dueno.getId());
+
+    String sql = "UPDATE duenos SET  nombre = ?, direccion = ?, telefono = ?, correo_electronico = ?, contacto_emergencia = ? WHERE cedula = ?";
     
     try (Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql)) {
+        
         solicitud.setString(1, dueno.getNombre());
-        solicitud.setString(2, dueno.getCedula());
-        solicitud.setString(3, dueno.getDireccion());
-        solicitud.setString(4, dueno.getTelefono());
-        solicitud.setString(5, dueno.getCorreo_electronico());
-        solicitud.setString(6, dueno.getContacto_emergencia());
-        solicitud.setInt(7, dueno.getId());
+        solicitud.setString(2, dueno.getDireccion());
+        solicitud.setString(3, dueno.getTelefono());
+        solicitud.setString(4, dueno.getCorreo_electronico());
+        solicitud.setString(5, dueno.getContacto_emergencia());
+        solicitud.setString(6, dueno.getCedula());
+        
+        
+        
+       // 🔍 Mostrar consulta y valores en orden correcto
+System.out.println("Ejecutando SQL: " + sql);
+System.out.println("Valores: ");
+System.out.println("  Nombre: " + dueno.getNombre());
+System.out.println("  Dirección: " + dueno.getDireccion());
+System.out.println("  Teléfono: " + dueno.getTelefono());
+System.out.println("  Correo Electrónico: " + dueno.getCorreo_electronico());
+System.out.println("  Contacto Emergencia: " + dueno.getContacto_emergencia());
+System.out.println("  Cédula: " + dueno.getCedula());
+
+        
+        
+        
         
         int filasActualizadas = solicitud.executeUpdate();
+        System.out.println("🔄 Filas actualizadas: " + filasActualizadas);
+        return filasActualizadas > 0;
         
-        if (filasActualizadas > 0) {
+      /*  if (filasActualizadas > 0) {
             System.out.println("Dueño actualizado correctamente.");
         } else {
             System.out.println("No se encontró el dueño con ese ID.");
+        }*/
+    } catch (SQLException e) {
+       System.out.println("❌ Error SQL: " + e.getMessage());
+    System.out.println("⚠️ Código de error: " + e.getErrorCode());
+    System.out.println("📌 SQLState: " + e.getSQLState());
+        e.printStackTrace();
+        return false;
+    }
+}
+    
+    
+    
+    //Eliminar Dueno
+    
+    public boolean eliminarDueno(String cedula) {
+    String sql = "DELETE FROM duenos WHERE cedula = ?";
+
+    try (Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql)) {
+        
+
+        solicitud.setString(1, cedula);
+        int filaEliminada = solicitud.executeUpdate();
+        
+        return filaEliminada > 0;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false; 
+    }
+}
+    
+    
+    public Dueno obtenerDuenoPorCedula(String cedula) {
+    Dueno dueno = null;
+    String sql = "SELECT * FROM duenos WHERE cedula = ?";
+    
+    try (Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql)) {
+        
+        solicitud.setString(1, cedula);
+        ResultSet resultado = solicitud.executeQuery();
+
+        if (resultado.next()) {
+            dueno = new Dueno(
+                resultado.getInt("id"),
+                resultado.getString("nombre"),
+                resultado.getString("cedula"),
+                resultado.getString("direccion"),
+                resultado.getString("telefono"),
+                resultado.getString("correo_electronico"),
+                resultado.getString("contacto_emergencia")
+            );
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
+
+    return dueno;
 }
+
+
 
 
 

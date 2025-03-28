@@ -2,22 +2,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/*package Vista;
+package Vista;
 
+import Controlador.DuenoControlador;
 import Modelo.Dueno;
+import Modelo.DuenoDAO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 
 public class DuenoVista {
     
+    private DuenoDAO duenoDAO;
+
+    public DuenoVista() {
+        duenoDAO = new DuenoDAO(); // Asegúrate de inicializarlo
+    }
+
+    public DuenoDAO getDuenoDAO() {
+        return duenoDAO;
+    }
     
-    public void mostrarDuenos(List<Dueno> duenos){
+
+
+
+  /* public void mostrarDuenos(List<Dueno> duenos){
         System.out.println("Lista de Dueños:");
         for (Dueno D:duenos){
             System.out.println(D);
         }
-    }
+        
+    }*/
 
     public Dueno agregarDueno(){
         
@@ -72,11 +88,11 @@ public class DuenoVista {
 
     
     
-}*/
+}
 
 
 
-package Vista;
+/*package Vista;
 
 import Modelo.Dueno;
 import javax.swing.*;
@@ -195,5 +211,5 @@ public class DuenoVista extends JFrame {
         txtCorreo.setText("");
         txtEmergencia.setText("");
     }
-}
+}*/
 

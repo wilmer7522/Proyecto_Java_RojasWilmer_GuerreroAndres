@@ -21,7 +21,7 @@ public class main {
         
         DuenoDAO duenoDAO = new DuenoDAO();
         DuenoVista duenoVista = new DuenoVista();
-        DuenoControlador duenoControlador = new DuenoControlador(duenoDAO,duenoVista);
+       // DuenoControlador duenoControlador = new DuenoControlador(duenoDAO,duenoVista);
         
         MascotaDAO mascotaDAO = new MascotaDAO();
         MascotaVista mascotaVista = new MascotaVista();
@@ -41,7 +41,7 @@ public class main {
             
             switch (opcion) {
                 case 1:
-                    duenoControlador.iniciarDueno();
+                 //   duenoControlador.iniciarDueno();
                     break;
                     
                 case 2:

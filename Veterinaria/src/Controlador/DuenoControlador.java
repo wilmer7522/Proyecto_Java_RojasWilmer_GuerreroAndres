@@ -7,21 +7,83 @@ package Controlador;
 import Modelo.Dueno;
 import Modelo.DuenoDAO;
 import Vista.DuenoVista;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author wilmer
  */
-public class DuenoControlador {
+public class DuenoControlador{
     
+    
+    
+    
+    
+   
     private DuenoDAO duenoDAO;
-    private DuenoVista duenoVista;
-    private Scanner leer;
+
+    public DuenoControlador(DuenoDAO duenoDAO) {
+        this.duenoDAO = duenoDAO;
+        
+    }
+    
+    //Agregar Duenos
+    public boolean agregarDueno(Dueno duenos) {
+        return duenoDAO.insertarDueno(duenos);
+    }
     
     
-    public DuenoControlador(DuenoDAO duenoDAO, DuenoVista duenoVista) {
+//listar Duenos
+    public void cargarDuenosEnTabla(javax.swing.JTable tablaDueno) {
+        // Implementación para cargar los datos en la tabla
+        
+        List<Dueno> lista = duenoDAO.obtenerDuenos(); // Llamamos al DAO
+        DefaultTableModel modelo = (DefaultTableModel) tablaDueno.getModel();
+        modelo.setRowCount(0); // Limpiamos la tabla
+
+        for (Dueno dueno : lista) {
+            modelo.addRow(new Object[]{
+                dueno.getId(),
+                dueno.getNombre(),
+                dueno.getCedula(),
+                dueno.getDireccion(),
+                dueno.getTelefono(),
+                dueno.getCorreo_electronico(),
+                dueno.getContacto_emergencia()
+            });
+        }
+    }
+    
+    
+    //Eliminar Duenos
+    public boolean eliminarDueno(String cedula) {
+    return duenoDAO.eliminarDueno(cedula);
+}
+    
+    
+    //Actualizar Dueno
+    public Dueno buscarDueno(String cedula) {
+    return duenoDAO.obtenerDuenoPorCedula(cedula); // Llama al método del DAO
+}
+
+public boolean actualizarDueno(Dueno dueno) {
+    return duenoDAO.actualizarDueno(dueno); // Método que actualiza en la BD
+}
+
+    
+    
+    
+   
+
+    
+    
+    }
+
+
+   /* public DuenoControlador(DuenoDAO duenoDAO, DuenoVista duenoVista) {
         this.duenoDAO = duenoDAO;
         this.duenoVista = duenoVista;
         this.leer = new Scanner(System.in);
@@ -69,6 +131,6 @@ public class DuenoControlador {
                         break;
             }
         }
-     }
+     }*/
     
-}
+
