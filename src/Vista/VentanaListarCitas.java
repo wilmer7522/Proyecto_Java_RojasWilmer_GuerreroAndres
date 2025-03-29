@@ -1,41 +1,49 @@
 package Vista;
 
+import Inicio.MenuPrincipal;
 import Modelo.CitaMedica;
-import Modelo.CitaMedicaDAO;
+import Modelo.ConsultasMedica;
+import Modelo.ConsultasMedicaDAO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
 public class VentanaListarCitas extends JFrame {
-    private CitaMedicaDAO citaDAO;
+    private ConsultasMedicaDAO citaDAO;
     private JTable table;
     private DefaultTableModel modelo;
 
-    public VentanaListarCitas(CitaMedicaDAO citaDAO) {
+    public VentanaListarCitas(ConsultasMedicaDAO citaDAO) {
         this.citaDAO = citaDAO;
 
-        setTitle("Lista de Citas Médicas");
+        setTitle("Lista de Consultas Médicas");
         setSize(800, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new String[]{"ID", "Fecha", "Mascota ID", "Dueño ID", "Veterinario ID", "Estado", "Diagnóstico", "Prescripción"});
+        modelo.setColumnIdentifiers(new String[]{"ID", "Fecha", "Mascota", "Dueño", "Veterinario", "Estado", "Diagnostico", "Prescripcion"});
 
         table = new JTable(modelo);
         JScrollPane scrollPane = new JScrollPane(table);
 
         JButton btnActualizar = new JButton("Actualizar Lista");
-        JButton btnEliminar = new JButton("Eliminar Cita");
+        JButton btnEliminar = new JButton("Eliminar Consultas");
+        JButton btnVolver = new JButton("Volver");
 
         btnActualizar.addActionListener(e -> actualizarLista());
         btnEliminar.addActionListener(e -> eliminarCitaSeleccionada());
+        btnVolver.addActionListener(e -> {
+            new MenuPrincipal();
+        });
 
         JPanel panelBotones = new JPanel();
         panelBotones.add(btnActualizar);
         panelBotones.add(btnEliminar);
+        panelBotones.add(btnVolver);
 
+        add(panelBotones, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(panelBotones, BorderLayout.SOUTH);
 
@@ -45,11 +53,11 @@ public class VentanaListarCitas extends JFrame {
 
     private void actualizarLista() {
         modelo.setRowCount(0);
-        List<CitaMedica> citas = citaDAO.obtenerCitas();
+        List<ConsultasMedica> citas = citaDAO.obtenerCitas();
         for (CitaMedica cita : citas) {
             modelo.addRow(new Object[]{
-                    cita.getId(), cita.getFechaHora(), cita.getMascotaId(),
-                    cita.getDuenoId(), cita.getVeterinarioId(), cita.getEstado(),
+                    cita.getId(), cita.getFechaHora(), cita.getMascota(),
+                    cita.getDueno(), cita.getVeterinario(), cita.getEstado(),
                     cita.getDiagnostico(), cita.getPrescripcion()
             });
         }
@@ -60,13 +68,13 @@ public class VentanaListarCitas extends JFrame {
         if (filaSeleccionada != -1) {
             int idCita = (int) table.getValueAt(filaSeleccionada, 0);
             if (citaDAO.eliminarCita(idCita)) {
-                JOptionPane.showMessageDialog(this, "Cita eliminada correctamente.");
+                JOptionPane.showMessageDialog(this, "Cita eliminada correctamente");
                 actualizarLista();
             } else {
-                JOptionPane.showMessageDialog(this, "Error al eliminar la cita.");
+                JOptionPane.showMessageDialog(this, "Error al eliminar la cita");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una cita para eliminar.");
+            JOptionPane.showMessageDialog(this, "Seleccione una cita para eliminar");
         }
     }
 }

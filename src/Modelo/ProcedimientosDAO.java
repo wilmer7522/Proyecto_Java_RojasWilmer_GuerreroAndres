@@ -39,7 +39,7 @@ public class ProcedimientosDAO {
                         rs.getString("insumos_utilizados"),
                         rs.getString("mascota"),
                         rs.getString("veterinario"),
-                        rs.getDate("fecha"),
+                        rs.getString("fecha"),
                         rs.getString("observaciones"),
                         rs.getString("insumo")
                 };

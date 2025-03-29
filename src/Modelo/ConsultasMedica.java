@@ -1,6 +1,6 @@
 package Modelo;
 
-public class CitaMedica {
+public class ConsultasMedica extends CitaMedica {
     private int id;
     private String fechaHora;
     private String mascota;
@@ -12,10 +12,8 @@ public class CitaMedica {
     private String nombreMascota;
     private String nombreDueno;
 
-    public CitaMedica() {}
-
-    public CitaMedica(int id, String fechaHora, String mascota, String nombreMascota, String dueno, String nombreDueno,
-                      String veterinario, String estado, String diagnostico, String prescripcion) {
+    public ConsultasMedica(int id, String fechaHora, String mascota, String nombreMascota, String dueno, String nombreDueno,
+                           String veterinario, String estado, String diagnostico, String prescripcion) {
         this.id = id;
         this.fechaHora = fechaHora;
         this.mascota = mascota;
@@ -28,8 +26,8 @@ public class CitaMedica {
         this.prescripcion = prescripcion;
     }
 
-    public CitaMedica(int id, String fechaHora, String mascota, String dueno, String veterinario,
-                      String estado, String diagnostico, String prescripcion) {
+    public ConsultasMedica(int id, String fechaHora, String mascota, String dueno, String veterinario,
+                           String estado, String diagnostico, String prescripcion) {
         this.id = id;
         this.fechaHora = fechaHora;
         this.mascota = mascota;

@@ -2,7 +2,6 @@ package Inicio;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class MenuPrincipal extends JFrame {
     public MenuPrincipal() {
@@ -18,6 +17,7 @@ public class MenuPrincipal extends JFrame {
         JButton btnReportes = new JButton("Gestion de Reportes");
         JButton btnProcedimientos = new JButton("Gestion de procedimientos medicos");
         JButton btnCitasMedicas = new JButton("Gestion de Citas medicas");
+        JButton btnVacunas = new JButton("Gestion de Vacunas");
         JButton btnSalir = new JButton("Salir");
 
         btnProductos.addActionListener(e -> {
@@ -26,7 +26,8 @@ public class MenuPrincipal extends JFrame {
 
         btnReportes.addActionListener(e -> new MenuReportes(this));
         btnProcedimientos.addActionListener(e -> new MenuProcedimientos(this));
-        btnCitasMedicas.addActionListener(e -> new MenuCitasMedicas());
+        btnCitasMedicas.addActionListener(e -> new MenuConsultasMedicas());
+        btnVacunas.addActionListener(e -> new MenuVacunas());
         btnSalir.addActionListener(e -> System.exit(0));
 
         add(lblTitulo);
@@ -35,6 +36,7 @@ public class MenuPrincipal extends JFrame {
         add(btnReportes);
         add(btnProcedimientos);
         add(btnCitasMedicas);
+        add(btnVacunas);
         add(btnSalir);
     }
 }

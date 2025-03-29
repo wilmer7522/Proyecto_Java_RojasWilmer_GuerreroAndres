@@ -1,19 +1,19 @@
 package Vista;
 
 import Modelo.CitaMedica;
-import Modelo.CitaMedicaDAO;
+import Modelo.ConsultasMedica;
+import Modelo.ConsultasMedicaDAO;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class VentanaEliminarCita extends JFrame {
-    private CitaMedicaDAO citaDAO;
+    private ConsultasMedicaDAO citaDAO;
     private JComboBox<CitaMedica> comboCitas;
     private JButton btnEliminar, btnCancelar;
 
-    public VentanaEliminarCita(CitaMedicaDAO citaDAO) {
+    public VentanaEliminarCita(ConsultasMedicaDAO citaDAO) {
         this.citaDAO = citaDAO;
 
         setTitle("Eliminar Cita Médica");
@@ -40,9 +40,9 @@ public class VentanaEliminarCita extends JFrame {
     }
 
     private void cargarCitas() {
-        List<CitaMedica> citas = citaDAO.obtenerCitas();
-        comboCitas.removeAllItems(); // Limpiar antes de cargar nuevas citas
-        for (CitaMedica cita : citas) {
+        List<ConsultasMedica> citas = citaDAO.obtenerCitas();
+        comboCitas.removeAllItems();
+        for (ConsultasMedica cita : citas) {
             comboCitas.addItem(cita);
         }
     }
@@ -60,7 +60,7 @@ public class VentanaEliminarCita extends JFrame {
         if (confirmacion == JOptionPane.YES_OPTION) {
             if (citaDAO.eliminarCita(citaSeleccionada.getId())) {
                 JOptionPane.showMessageDialog(this, "Cita eliminada correctamente");
-                cargarCitas(); // Refrescar la lista tras eliminación
+                cargarCitas();
             } else {
                 JOptionPane.showMessageDialog(this, "Error al eliminar la cita");
             }

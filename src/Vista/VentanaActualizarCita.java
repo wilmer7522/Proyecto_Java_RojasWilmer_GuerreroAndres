@@ -1,18 +1,18 @@
 package Vista;
 
-import Modelo.CitaMedica;
-import Modelo.CitaMedicaDAO;
+import Modelo.ConsultasMedica;
+import Modelo.ConsultasMedicaDAO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 public class VentanaActualizarCita extends JFrame {
-    private CitaMedicaDAO citaDAO;
+    private ConsultasMedicaDAO citaDAO;
     private JComboBox<Integer> comboCitas;
     private JTextField txtEstado, txtDiagnostico, txtPrescripcion;
 
-    public VentanaActualizarCita(CitaMedicaDAO citaDAO) {
+    public VentanaActualizarCita(ConsultasMedicaDAO citaDAO) {
         this.citaDAO = citaDAO;
 
         setTitle("Actualizar Cita Médica");
@@ -46,8 +46,8 @@ public class VentanaActualizarCita extends JFrame {
     }
 
     private void cargarCitas() {
-        List<CitaMedica> citas = citaDAO.obtenerCitas();
-        for (CitaMedica cita : citas) {
+        List<ConsultasMedica> citas = citaDAO.obtenerCitas();
+        for (ConsultasMedica cita : citas) {
             comboCitas.addItem(cita.getId());
         }
     }
@@ -58,11 +58,22 @@ public class VentanaActualizarCita extends JFrame {
             return;
         }
         int id = (int) comboCitas.getSelectedItem();
+        String fechaHora = txtDiagnostico.getText();
+        String mascota = txtEstado.getText();
+        String dueno = txtPrescripcion.getText();
+        String veterinario = txtPrescripcion.getText();
         String estado = txtEstado.getText();
         String diagnostico = txtDiagnostico.getText();
         String prescripcion = txtPrescripcion.getText();
 
-        CitaMedica cita = new CitaMedica(id, null, 0, 0, 0, estado, diagnostico, prescripcion);
+        ConsultasMedica cita = new ConsultasMedica(id,
+                fechaHora,
+                mascota,
+                dueno,
+                veterinario,
+                estado,
+                diagnostico,
+                prescripcion);
         if (citaDAO.actualizarCita(cita)) {
             JOptionPane.showMessageDialog(this, "Cita actualizada correctamente");
             dispose();
