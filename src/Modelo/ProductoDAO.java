@@ -46,6 +46,7 @@ public class ProductoDAO {
             }
         } catch (SQLException e) {
             System.err.println("Error al obtener productos: " + e.getMessage());
+            e.printStackTrace();
         }
         return listaProductos;
     }

@@ -27,20 +27,28 @@ public class MenuProductos extends JFrame {
         JButton btnEliminarProductos = new JButton("Eliminar Productos");
         JButton btnSalir = new JButton("Salir");
 
-        ventanaListarProductos = new VentanaListarProductos(productoDAO.obtenerProductos());
+        List<Productos> productos = productoDAO.obtenerProductos();
+        ventanaListarProductos = new VentanaListarProductos(productos);
 
-        btnVerProductos.addActionListener(e ->{
-            List<Productos> productos = ProductoDAO.obtenerProductos();
-            new VentanaListarProductos(productos);
+        btnVerProductos.addActionListener(e -> {
+            if (ventanaListarProductos == null) {
+                ventanaListarProductos = new VentanaListarProductos(productoDAO.obtenerProductos());
+            } else {
+                ventanaListarProductos.setVisible(true);
+            }
         });
 
         btnAgregarProductos.addActionListener(e ->
                 new VentanaAgregarProducto(this, ventanaListarProductos)
         );
 
-        btnActualizarProductos.addActionListener(e ->
-                ventanaListarProductos.actualizarTabla(ProductoDAO.obtenerProductos())
-        );
+        btnActualizarProductos.addActionListener(e -> {
+            if (ventanaListarProductos != null) {
+                ventanaListarProductos.actualizarTabla(productoDAO.obtenerProductos());
+            } else {
+                System.err.println("No se puede agregar productos");
+            }
+        });
 
         btnSalir.addActionListener(e -> {
             dispose();

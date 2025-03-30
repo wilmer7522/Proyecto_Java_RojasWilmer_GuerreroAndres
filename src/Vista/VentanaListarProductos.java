@@ -29,8 +29,6 @@ public class VentanaListarProductos extends JFrame {
 
         add(scrollPane, BorderLayout.CENTER);
         add(btnVolver, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 
     public void actualizarTabla(List<Productos> productos) {
