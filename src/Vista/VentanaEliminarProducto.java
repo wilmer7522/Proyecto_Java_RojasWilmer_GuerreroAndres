@@ -24,9 +24,9 @@ public class VentanaEliminarProducto extends JFrame {
             ProductoDAO productoDAO = new ProductoDAO();
 
             if (productoDAO.eliminarProducto(id)) {
-                JOptionPane.showMessageDialog(this, "Producto eliminado correctamente.");
+                JOptionPane.showMessageDialog(this, "Producto eliminado correctamente");
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontró el producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se encontró el producto", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 

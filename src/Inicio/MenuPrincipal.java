@@ -18,16 +18,15 @@ public class MenuPrincipal extends JFrame {
         JButton btnProcedimientos = new JButton("Gestion de procedimientos medicos");
         JButton btnCitasMedicas = new JButton("Gestion de Citas medicas");
         JButton btnVacunas = new JButton("Gestion de Vacunas");
+        JButton btnProveedores = new JButton("Gestion de Proveedores");
         JButton btnSalir = new JButton("Salir");
 
-        btnProductos.addActionListener(e -> {
-            new MenuProductos();
-        });
-
+        btnProductos.addActionListener(e -> new MenuProductos());
         btnReportes.addActionListener(e -> new MenuReportes(this));
         btnProcedimientos.addActionListener(e -> new MenuProcedimientos(this));
         btnCitasMedicas.addActionListener(e -> new MenuConsultasMedicas());
         btnVacunas.addActionListener(e -> new MenuVacunas());
+        btnProveedores.addActionListener(e -> new MenuProveedores());
         btnSalir.addActionListener(e -> System.exit(0));
 
         add(lblTitulo);
@@ -37,6 +36,7 @@ public class MenuPrincipal extends JFrame {
         add(btnProcedimientos);
         add(btnCitasMedicas);
         add(btnVacunas);
+        add(btnProveedores);
         add(btnSalir);
     }
 }

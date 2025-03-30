@@ -17,7 +17,7 @@ public class VentanaListarCitas extends JFrame {
     public VentanaListarCitas(ConsultasMedicaDAO citaDAO) {
         this.citaDAO = citaDAO;
 
-        setTitle("Lista de Consultas Médicas");
+        setTitle("Lista de consultas medicas");
         setSize(800, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

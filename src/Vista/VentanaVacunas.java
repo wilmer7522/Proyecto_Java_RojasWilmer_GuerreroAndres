@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class VentanaVacunas extends JFrame {
@@ -18,7 +17,7 @@ public class VentanaVacunas extends JFrame {
     public VentanaVacunas() throws SQLException {
         vacunaDAO = new VacunaDAO();
 
-        setTitle("Gestión de Vacunas");
+        setTitle("Gestion de Vacunas");
         setSize(800, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -32,9 +31,9 @@ public class VentanaVacunas extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelBotones = new JPanel();
-        JButton btnAgregar = new JButton("Agregar");
-        JButton btnEditar = new JButton("Editar");
-        JButton btnEliminar = new JButton("Eliminar");
+        JButton btnAgregar = new JButton("Agregar vacunas");
+        JButton btnEditar = new JButton("Editar vacunas");
+        JButton btnEliminar = new JButton("Eliminar vacunas");
 
         panelBotones.add(btnAgregar);
         panelBotones.add(btnEditar);
@@ -87,7 +86,7 @@ public class VentanaVacunas extends JFrame {
                 "Nombre:", txtNombre,
                 "Fabricante:", txtFabricante,
                 "Lote:", txtLote,
-                "Fecha Aplicación (YYYY-MM-DD):", txtFechaAplicacion,
+                "Fecha Aplicacion (YYYY-MM-DD):", txtFechaAplicacion,
                 "Fecha Vencimiento (YYYY-MM-DD):", txtFechaVencimiento,
                 "ID Mascota:", txtMascotaId,
                 "ID Inventario:", txtInventarioId
@@ -118,7 +117,7 @@ public class VentanaVacunas extends JFrame {
     private void editarVacuna() throws SQLException {
         int filaSeleccionada = table.getSelectedRow();
         if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione una vacuna para editar.");
+            JOptionPane.showMessageDialog(this, "Seleccione una vacuna para editar");
             return;
         }
         int id = (int) table.getValueAt(filaSeleccionada, 0);
@@ -129,11 +128,11 @@ public class VentanaVacunas extends JFrame {
     private void eliminarVacuna() throws SQLException {
         int filaSeleccionada = table.getSelectedRow();
         if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione una vacuna para eliminar.");
+            JOptionPane.showMessageDialog(this, "Seleccione una vacuna para eliminar");
             return;
         }
         int id = (int) table.getValueAt(filaSeleccionada, 0);
-        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar esta vacuna?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de eliminar esta vacuna?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
         if (confirmacion == JOptionPane.YES_OPTION) {
             vacunaDAO.eliminarVacuna(id);
             cargarDatos();

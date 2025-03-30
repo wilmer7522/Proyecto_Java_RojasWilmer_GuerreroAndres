@@ -25,7 +25,7 @@ public class MenuProductos extends JFrame {
         JButton btnAgregarProductos = new JButton("Agregar Productos");
         JButton btnActualizarProductos = new JButton("Actualizar Productos");
         JButton btnEliminarProductos = new JButton("Eliminar Productos");
-        JButton btnVolver = new JButton("Volver");
+        JButton btnSalir = new JButton("Salir");
 
         ventanaListarProductos = new VentanaListarProductos(productoDAO.obtenerProductos());
 
@@ -42,16 +42,16 @@ public class MenuProductos extends JFrame {
                 ventanaListarProductos.actualizarTabla(productoDAO.obtenerProductos())
         );
 
-        btnVolver.addActionListener(e -> {
+        btnSalir.addActionListener(e -> {
             dispose();
-            setVisible(true);
+            new MenuPrincipal();
         });
 
         add(btnVerProductos);
         add(btnAgregarProductos);
         add(btnActualizarProductos);
         add(btnEliminarProductos);
-        add(btnVolver);
+        add(btnSalir);
         setVisible(true);
     }
 }

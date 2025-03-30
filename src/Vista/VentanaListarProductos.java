@@ -24,7 +24,6 @@ public class VentanaListarProductos extends JFrame {
         tablaProductos = new JTable(modelo);
         JScrollPane scrollPane = new JScrollPane(tablaProductos);
 
-        // Botón para cerrar la ventana
         JButton btnVolver = new JButton("Volver");
         btnVolver.addActionListener(e -> dispose());
 
