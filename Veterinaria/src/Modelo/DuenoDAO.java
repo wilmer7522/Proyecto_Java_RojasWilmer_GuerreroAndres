@@ -44,10 +44,10 @@ public class DuenoDAO {
             solicitud.setString(6, duenos.getContacto_emergencia());
 
             int filas = solicitud.executeUpdate();
-             //solicitud.executeUpdate();
+            
              
              return filas > 0;
-            //System.out.println("Dueños ingresado de manera exitosa");
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -117,7 +117,7 @@ public class DuenoDAO {
     //Actualizar Dueno
     public boolean actualizarDueno(Dueno dueno) {
         
-        System.out.println("🔎 Dueno obtenido - ID: " + dueno.getId());
+        
 
     String sql = "UPDATE duenos SET  nombre = ?, direccion = ?, telefono = ?, correo_electronico = ?, contacto_emergencia = ? WHERE cedula = ?";
     
@@ -132,33 +132,19 @@ public class DuenoDAO {
         
         
         
-       // 🔍 Mostrar consulta y valores en orden correcto
-System.out.println("Ejecutando SQL: " + sql);
-System.out.println("Valores: ");
-System.out.println("  Nombre: " + dueno.getNombre());
-System.out.println("  Dirección: " + dueno.getDireccion());
-System.out.println("  Teléfono: " + dueno.getTelefono());
-System.out.println("  Correo Electrónico: " + dueno.getCorreo_electronico());
-System.out.println("  Contacto Emergencia: " + dueno.getContacto_emergencia());
-System.out.println("  Cédula: " + dueno.getCedula());
+       
 
         
         
         
         
         int filasActualizadas = solicitud.executeUpdate();
-        System.out.println("🔄 Filas actualizadas: " + filasActualizadas);
+        
         return filasActualizadas > 0;
         
-      /*  if (filasActualizadas > 0) {
-            System.out.println("Dueño actualizado correctamente.");
-        } else {
-            System.out.println("No se encontró el dueño con ese ID.");
-        }*/
+      
     } catch (SQLException e) {
-       System.out.println("❌ Error SQL: " + e.getMessage());
-    System.out.println("⚠️ Código de error: " + e.getErrorCode());
-    System.out.println("📌 SQLState: " + e.getSQLState());
+      
         e.printStackTrace();
         return false;
     }

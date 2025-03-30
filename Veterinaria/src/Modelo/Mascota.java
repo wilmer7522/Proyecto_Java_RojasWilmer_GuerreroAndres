@@ -19,9 +19,9 @@ public class Mascota {
     private String sexo;
     private String microchipTatuaje;
     private String foto;
-    private Dueno dueno;
+    private Integer dueno;
 
-    public Mascota(int id, String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, Dueno dueno) {
+    public Mascota(int id, String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, Integer dueno) {
         this.id = id;
         this.nombre = nombre;
         this.especie = especie;
@@ -34,7 +34,7 @@ public class Mascota {
         this.dueno = dueno;
     }
 
-    public Mascota(String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, Dueno dueno) {
+    public Mascota(String nombre, String especie, String raza, int edad, String fechaNacimiento, String sexo, String microchipTatuaje, String foto, Integer dueno) {
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
@@ -118,11 +118,11 @@ public class Mascota {
         this.foto = foto;
     }
 
-    public Dueno getDueno() {
+    public Integer getDueno() {
         return dueno;
     }
 
-    public void setDueno(Dueno dueno) {
+    public void setDueno(Integer dueno) {
         this.dueno = dueno;
     }
 

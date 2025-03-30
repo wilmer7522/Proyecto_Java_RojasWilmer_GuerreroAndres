@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class DuenoVistaActualizarFrame extends javax.swing.JFrame {
 
-    private DuenoVista duenoVista;
+    
 private DuenoDAO duenoDAO;
 private DuenoControlador duenoControlador;
     /**
@@ -232,18 +232,6 @@ private DuenoControlador duenoControlador;
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
         
-        System.out.println("📌 Valores obtenidos de los JTextField:");
-System.out.println("  ID: " + txtId.getText().trim());
-System.out.println("  Nombre: " + txtNombre.getText().trim());
-System.out.println("  Cédula: " + txtCedula.getText().trim());
-System.out.println("  Dirección: " + txtDireccion.getText().trim());
-System.out.println("  Teléfono: " + txtTelefono.getText().trim());
-System.out.println("  Correo Electrónico: " + txtCorreo_Electronico.getText().trim());
-System.out.println("  Contacto Emergencia: " + txtContacto_Emergencia.getText().trim());
-
-        
-        
-        
         int id = Integer.parseInt(txtId.getText().trim());
         String nombre = txtNombre.getText().trim();
         String direccion = txtDireccion.getText().trim();
@@ -275,15 +263,7 @@ System.out.println("  Contacto Emergencia: " + txtContacto_Emergencia.getText().
     // Crear un objeto Dueño con los nuevos datos
     Dueno dueno = new Dueno(id,nombre, cedula, direccion, telefono,correo,contactoEmergencia);
     
-    // Mostrar datos antes de actualizar (para depuración)
-    System.out.println("🔄 Actualizando Dueño con los siguientes datos:");
-    System.out.println("  ID: " + dueno.getId());
-    System.out.println("  Nombre: " + dueno.getNombre());
-    System.out.println("  Cédula: " + dueno.getCedula());
-    System.out.println("  Dirección: " + dueno.getDireccion());
-    System.out.println("  Teléfono: " + dueno.getTelefono());
-    System.out.println("  Correo Electrónico: " + dueno.getCorreo_electronico());
-    System.out.println("  Contacto Emergencia: " + dueno.getContacto_emergencia());
+   
 
     // Llamar al controlador para actualizar
     boolean actualizado = duenoControlador.actualizarDueno(dueno);

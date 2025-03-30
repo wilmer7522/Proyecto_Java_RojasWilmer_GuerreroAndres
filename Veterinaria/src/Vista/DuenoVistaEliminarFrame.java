@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author wilmer
  */
 public class DuenoVistaEliminarFrame extends javax.swing.JFrame {
-private DuenoVista duenoVista;
+
 private DuenoDAO duenoDAO;
 private DuenoControlador duenoControlador;
 

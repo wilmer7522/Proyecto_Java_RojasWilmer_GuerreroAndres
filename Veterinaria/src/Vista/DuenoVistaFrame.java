@@ -6,7 +6,7 @@ package Vista;
 import Controlador.DuenoControlador;
 import Modelo.Dueno;
 import Modelo.DuenoDAO;
-import Vista.DuenoVista;
+
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author wilmer
  */
 public class DuenoVistaFrame extends javax.swing.JFrame {
-private DuenoVista duenoVista;
+
 private DuenoDAO duenoDAO;
 
     /**
@@ -22,7 +22,7 @@ private DuenoDAO duenoDAO;
      */
     public DuenoVistaFrame() {
         initComponents();
-        duenoVista = new DuenoVista();
+        
         duenoDAO = new DuenoDAO();
     }
     
@@ -125,7 +125,7 @@ private DuenoDAO duenoDAO;
             }
         });
 
-        btnBuscarId.setText("Buscar ID");
+        btnBuscarId.setText("Buscar por Cedula");
         btnBuscarId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarIdActionPerformed(evt);
@@ -235,8 +235,8 @@ private DuenoDAO duenoDAO;
                         .addComponent(btnBuscarId, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(103, 103, 103)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(472, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -340,14 +340,15 @@ private DuenoDAO duenoDAO;
     private void btnBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIdActionPerformed
         // TODO add your handling code here
         DuenoVistaBuscarIdFrame duenoVista = new DuenoVistaBuscarIdFrame(); // Crear la ventana
-    duenoVista.setVisible(true); // Hacerla visible
+    
     
 
         
     }//GEN-LAST:event_btnBuscarIdActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        DuenoVistaFrame duenovista = new DuenoVistaFrame();
+        duenovista.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
