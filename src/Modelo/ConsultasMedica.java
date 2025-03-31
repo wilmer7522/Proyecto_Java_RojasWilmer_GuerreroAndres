@@ -1,6 +1,6 @@
 package Modelo;
 
-public class ConsultasMedica extends CitaMedica {
+public class ConsultasMedica {
     private int id;
     private String fechaHora;
     private String mascota;

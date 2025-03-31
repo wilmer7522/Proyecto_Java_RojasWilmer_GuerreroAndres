@@ -1,6 +1,6 @@
 package Vista;
 
-import Modelo.CitaMedica;
+import Modelo.ConsultasMedica;
 import Modelo.ConsultasMedicaDAO;
 import javax.swing.*;
 import java.awt.*;
@@ -67,9 +67,9 @@ public class VentanaAgregarCita extends JFrame {
             String diagnostico = txtDiagnostico.getText();
             String prescripcion = txtPrescripcion.getText();
 
-            CitaMedica nuevaCita = new CitaMedica(0, fechaHora, mascota, dueno, veterinario, estado, diagnostico, prescripcion);
+            ConsultasMedica nuevaConsulta = new ConsultasMedica(0, fechaHora, mascota, dueno, veterinario, estado, diagnostico, prescripcion);
 
-            if (consultasMedicaDAO.insertarCita(nuevaCita)) {
+            if (consultasMedicaDAO.insertarCita(nuevaConsulta)) {
                 JOptionPane.showMessageDialog(this, "Consulta agregada con exito");
                 dispose();
             } else {

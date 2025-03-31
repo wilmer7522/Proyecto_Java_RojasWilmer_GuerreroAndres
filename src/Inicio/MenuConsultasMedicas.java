@@ -20,7 +20,7 @@ public class MenuConsultasMedicas extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridLayout(5, 1));
 
-        JButton btnVerCitas = new JButton("Ver Citas");
+        JButton btnVerCitas = new JButton("Ver Consultas");
         JButton btnAgregarConsulta = new JButton("Agregar Consulta");
         JButton btnActualizarCita = new JButton("Actualizar Consulta");
         JButton btnEliminarCita = new JButton("Eliminar Consulta");

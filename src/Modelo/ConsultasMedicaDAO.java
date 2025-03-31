@@ -41,7 +41,7 @@ public class ConsultasMedicaDAO {
                  ResultSet rs = stmt.executeQuery()) {
 
                 while (rs.next()) {
-                    ConsultasMedica cita = new ConsultasMedica(
+                    ConsultasMedica consulta = new ConsultasMedica(
                             rs.getInt("id"),
                             rs.getString("fecha_hora"),
                             rs.getString("mascota_nombre"),
@@ -52,7 +52,7 @@ public class ConsultasMedicaDAO {
                             rs.getString("prescripcion_medica")
                     );
 
-                    citas.add(cita);
+                    citas.add(consulta);
                 }
             }
         } catch (SQLException e) {
@@ -63,20 +63,20 @@ public class ConsultasMedicaDAO {
         return citas;
     }
 
-    public boolean insertarCita(CitaMedica cita) {
+    public boolean insertarCita(ConsultasMedica consulta) {
         String sql = "INSERT INTO consultas_medicas (fecha_hora, mascota_id, dueno_id, veterinario_id, estado, diagnostico, prescripcion_medica) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conectar();
             try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-                stmt.setString(1, cita.getFechaHora());
-                stmt.setString(2, cita.getMascota());
-                stmt.setString(3, cita.getDueno());
-                stmt.setString(4, cita.getVeterinario());
-                stmt.setString(5, cita.getEstado());
-                stmt.setString(6, cita.getDiagnostico());
-                stmt.setString(7, cita.getPrescripcion());
+                stmt.setString(1, consulta.getFechaHora());
+                stmt.setString(2, consulta.getMascota());
+                stmt.setString(3, consulta.getDueno());
+                stmt.setString(4, consulta.getVeterinario());
+                stmt.setString(5, consulta.getEstado());
+                stmt.setString(6, consulta.getDiagnostico());
+                stmt.setString(7, consulta.getPrescripcion());
 
                 return stmt.executeUpdate() > 0;
             }

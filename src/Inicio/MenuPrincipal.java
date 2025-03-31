@@ -1,5 +1,7 @@
 package Inicio;
 
+import Modelo.FacturaPDF;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,6 +26,7 @@ public class MenuPrincipal extends JFrame {
         JButton btnHistorial = new JButton("Gestion de historial medico");
         JButton btnDetallesFacturas = new JButton("Gestion de detalle de inventario en facturas");
         JButton btnFacturas = new JButton("Gestion de Facturas");
+        JButton btnDescargar = new JButton("Descargar Factura");
         JButton btnSalir = new JButton("Salir");
 
         btnProductos.addActionListener(e -> new MenuProductos().setVisible(true));
@@ -37,6 +40,7 @@ public class MenuPrincipal extends JFrame {
         btnHistorial.addActionListener(e -> new MenuHistorialMedico().setVisible(true));
         btnDetallesFacturas.addActionListener( e-> new MenuDetallesFactura().setVisible(true));
         btnFacturas.addActionListener( e -> new MenuFacturas().setVisible(true));
+        btnDescargar.addActionListener( e -> new FacturaPDF());
         btnSalir.addActionListener(e -> System.exit(0));
 
         add(lblTitulo);
@@ -52,6 +56,7 @@ public class MenuPrincipal extends JFrame {
         add(btnHistorial);
         add(btnDetallesFacturas);
         add(btnFacturas);
+        add(btnDescargar);
         add(btnSalir);
     }
 }

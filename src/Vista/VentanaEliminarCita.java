@@ -1,6 +1,5 @@
 package Vista;
 
-import Modelo.CitaMedica;
 import Modelo.ConsultasMedica;
 import Modelo.ConsultasMedicaDAO;
 
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class VentanaEliminarCita extends JFrame {
     private ConsultasMedicaDAO citaDAO;
-    private JComboBox<CitaMedica> comboCitas;
+    private JComboBox<ConsultasMedica> comboCitas;
     private JButton btnEliminar, btnCancelar;
 
     public VentanaEliminarCita(ConsultasMedicaDAO citaDAO) {
@@ -22,7 +21,7 @@ public class VentanaEliminarCita extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridLayout(3, 1));
 
-        comboCitas = new JComboBox<>();
+        comboCitas = new JComboBox<ConsultasMedica>();
         cargarCitas();
 
         btnEliminar = new JButton("Eliminar Cita");
@@ -48,7 +47,7 @@ public class VentanaEliminarCita extends JFrame {
     }
 
     private void eliminarCita() {
-        CitaMedica citaSeleccionada = (CitaMedica) comboCitas.getSelectedItem();
+        ConsultasMedica citaSeleccionada = (ConsultasMedica) comboCitas.getSelectedItem();
 
         if (citaSeleccionada == null) {
             JOptionPane.showMessageDialog(this, "Seleccione una cita");

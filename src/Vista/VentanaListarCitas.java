@@ -1,6 +1,5 @@
 package Vista;
 
-import Modelo.CitaMedica;
 import Modelo.ConsultasMedica;
 import Modelo.ConsultasMedicaDAO;
 import javax.swing.*;
@@ -50,12 +49,12 @@ public class VentanaListarCitas extends JFrame {
 
     private void actualizarLista() {
         modelo.setRowCount(0);
-        List<ConsultasMedica> citas = citaDAO.obtenerCitas();
-        for (CitaMedica cita : citas) {
+        List<ConsultasMedica> consultas = citaDAO.obtenerCitas();
+        for (ConsultasMedica consulta : consultas) {
             modelo.addRow(new Object[]{
-                    cita.getId(), cita.getFechaHora(), cita.getMascota(),
-                    cita.getDueno(), cita.getVeterinario(), cita.getEstado(),
-                    cita.getDiagnostico(), cita.getPrescripcion()
+                    consulta.getId(), consulta.getFechaHora(), consulta.getMascota(),
+                    consulta.getDueno(), consulta.getVeterinario(), consulta.getEstado(),
+                    consulta.getDiagnostico(), consulta.getPrescripcion()
             });
         }
     }
