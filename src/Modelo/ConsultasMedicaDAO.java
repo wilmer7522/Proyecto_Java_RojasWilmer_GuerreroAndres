@@ -26,8 +26,8 @@ public class ConsultasMedicaDAO {
         }
     }
 
-    public List<ConsultasMedica> obtenerCitas() {
-        List<ConsultasMedica> citas = new ArrayList<>();
+    public List<ConsultasMedica> obtenerConsultas() {
+        List<ConsultasMedica> Consultas = new ArrayList<>();
         String sql = "SELECT cm.id, cm.fecha_hora, m.nombre AS mascota_nombre, d.nombre AS dueno_nombre, " +
                 "v.nombre AS veterinario_nombre, cm.estado, cm.diagnostico, cm.prescripcion_medica " +
                 "FROM consultas_medicas cm " +
@@ -52,7 +52,7 @@ public class ConsultasMedicaDAO {
                             rs.getString("prescripcion_medica")
                     );
 
-                    citas.add(consulta);
+                    Consultas.add(consulta);
                 }
             }
         } catch (SQLException e) {
@@ -60,10 +60,10 @@ public class ConsultasMedicaDAO {
         } finally {
             cerrarConexion();
         }
-        return citas;
+        return Consultas;
     }
 
-    public boolean insertarCita(ConsultasMedica consulta) {
+    public boolean insertarConsultas(ConsultasMedica consulta) {
         String sql = "INSERT INTO consultas_medicas (fecha_hora, mascota_id, dueno_id, veterinario_id, estado, diagnostico, prescripcion_medica) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -88,20 +88,20 @@ public class ConsultasMedicaDAO {
         }
     }
 
-    public boolean actualizarCita(ConsultasMedica cita) {
+    public boolean actualizarConsultas(ConsultasMedica Consulta) {
         String sql = "UPDATE consultas_medicas SET fecha_hora = ?, mascota_id = ?, dueno_id = ?, veterinario_id = ?, estado = ?, diagnostico = ?, prescripcion_medica = ? WHERE id = ?";
 
         try {
             conectar();
             try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-                stmt.setString(1, cita.getFechaHora());
-                stmt.setString(2, cita.getMascota());
-                stmt.setString(3, cita.getDueno());
-                stmt.setString(4, cita.getVeterinario());
-                stmt.setString(5, cita.getEstado());
-                stmt.setString(6, cita.getDiagnostico());
-                stmt.setString(7, cita.getPrescripcion());
-                stmt.setInt(8, cita.getId());
+                stmt.setString(1, Consulta.getFechaHora());
+                stmt.setString(2, Consulta.getMascota());
+                stmt.setString(3, Consulta.getDueno());
+                stmt.setString(4, Consulta.getVeterinario());
+                stmt.setString(5, Consulta.getEstado());
+                stmt.setString(6, Consulta.getDiagnostico());
+                stmt.setString(7, Consulta.getPrescripcion());
+                stmt.setInt(8, Consulta.getId());
 
                 return stmt.executeUpdate() > 0;
             }
@@ -113,7 +113,7 @@ public class ConsultasMedicaDAO {
         }
     }
 
-    public boolean eliminarCita(int id) {
+    public boolean eliminarConsultas(int id) {
         String sql = "DELETE FROM consultas_medicas WHERE id = ?";
 
         try {

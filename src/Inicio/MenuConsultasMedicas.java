@@ -1,18 +1,18 @@
 package Inicio;
 
 import Modelo.ConsultasMedicaDAO;
-import Vista.VentanaActualizarCita;
-import Vista.VentanaAgregarCita;
-import Vista.VentanaEliminarCita;
-import Vista.VentanaListarCitas;
+import Vista.VentanaActualizarConsula;
+import Vista.VentanaAgregarConsulta;
+import Vista.VentanaEliminarConsulta;
+import Vista.VentanaListarConsultas;
 import javax.swing.*;
 import java.awt.*;
 
 public class MenuConsultasMedicas extends JFrame {
-    private ConsultasMedicaDAO citaDAO;
+    private ConsultasMedicaDAO consultaDAO;
 
     public MenuConsultasMedicas() {
-        citaDAO = new ConsultasMedicaDAO();
+        consultaDAO = new ConsultasMedicaDAO();
 
         setTitle("Gestion de Consultas Medicas");
         setSize(400, 300);
@@ -20,22 +20,22 @@ public class MenuConsultasMedicas extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridLayout(5, 1));
 
-        JButton btnVerCitas = new JButton("Ver Consultas");
+        JButton btnVerConsulta = new JButton("Ver Consultas");
         JButton btnAgregarConsulta = new JButton("Agregar Consulta");
-        JButton btnActualizarCita = new JButton("Actualizar Consulta");
-        JButton btnEliminarCita = new JButton("Eliminar Consulta");
+        JButton btnActualizarConsulta = new JButton("Actualizar Consulta");
+        JButton btnEliminarConulta = new JButton("Eliminar Consulta");
         JButton btnSalir = new JButton("Salir");
 
-        btnVerCitas.addActionListener(e -> new VentanaListarCitas(citaDAO));
-        btnAgregarConsulta.addActionListener(e -> new VentanaAgregarCita(citaDAO));
-        btnActualizarCita.addActionListener(e -> new VentanaActualizarCita(citaDAO));
-        btnEliminarCita.addActionListener(e -> new VentanaEliminarCita(citaDAO));
+        btnVerConsulta.addActionListener(e -> new VentanaListarConsultas(consultaDAO));
+        btnAgregarConsulta.addActionListener(e -> new VentanaAgregarConsulta(consultaDAO));
+        btnActualizarConsulta.addActionListener(e -> new VentanaActualizarConsula(consultaDAO));
+        btnEliminarConulta.addActionListener(e -> new VentanaEliminarConsulta(consultaDAO));
         btnSalir.addActionListener(e -> dispose());
 
-        add(btnVerCitas);
+        add(btnVerConsulta);
         add(btnAgregarConsulta);
-        add(btnActualizarCita);
-        add(btnEliminarCita);
+        add(btnActualizarConsulta);
+        add(btnEliminarConulta);
         add(btnSalir);
 
         setVisible(true);
