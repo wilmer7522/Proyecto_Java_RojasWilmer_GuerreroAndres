@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.MascotaControlador;
+import Inicio.MenuPrincipal;
 import Modelo.Dueno;
 import Modelo.DuenoDAO;
 import Modelo.Mascota;
@@ -465,7 +466,10 @@ public class MascotaVistaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarIdActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+        
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed

@@ -4,6 +4,7 @@
  */
 package Vista;
 import Controlador.DuenoControlador;
+import Inicio.MenuPrincipal;
 import Modelo.Dueno;
 import Modelo.DuenoDAO;
 
@@ -347,8 +348,10 @@ private DuenoDAO duenoDAO;
     }//GEN-LAST:event_btnBuscarIdActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        DuenoVistaFrame duenovista = new DuenoVistaFrame();
-        duenovista.setVisible(false);
+       
+       this.setVisible(false);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
