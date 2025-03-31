@@ -188,6 +188,7 @@ public class DuenoVistaBuscarIdFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarCedulaActionPerformed
 
     private void txtRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegresarActionPerformed
+        this.setVisible(false);
         DuenoVistaFrame duenoVista = new DuenoVistaFrame();
         duenoVista.setVisible(true);
     }//GEN-LAST:event_txtRegresarActionPerformed

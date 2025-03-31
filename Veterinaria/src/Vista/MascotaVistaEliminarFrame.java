@@ -161,7 +161,7 @@ public class MascotaVistaEliminarFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegresarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMascotaActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
         MascotaVistaFrame mascotaVista = new MascotaVistaFrame();
         mascotaVista.setVisible(true);
 

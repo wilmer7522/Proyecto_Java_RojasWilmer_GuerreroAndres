@@ -165,7 +165,7 @@ private DuenoControlador duenoControlador;
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
         DuenoVistaFrame duenoVista = new DuenoVistaFrame(); // Crea una nueva ventana de Dueño
     duenoVista.setVisible(true); // La hace visible
     

@@ -1,5 +1,6 @@
 package Inicio;
 
+import Vista.AdopcionesVistaFrame;
 import Vista.DuenoVistaFrame;
 import Vista.MascotaVistaFrame;
 import javax.swing.*;
@@ -22,6 +23,7 @@ public class MenuPrincipal extends JFrame {
         JButton btnProcedimientos = new JButton("Gestion de procedimientos medicos");
         JButton btnCitasMedicas = new JButton("Gestion de Citas medicas");
         JButton btnVacunas = new JButton("Gestion de Vacunas");
+        JButton btnAdopciones = new JButton("Gestion de Adopciones");
         JButton btnProveedores = new JButton("Gestion de Proveedores");
         JButton btnSalir = new JButton("Salir");
 
@@ -33,6 +35,11 @@ public class MenuPrincipal extends JFrame {
         btnMascotas.addActionListener(e -> {
             MascotaVistaFrame mascotaVista = new MascotaVistaFrame();
             mascotaVista.setVisible(true);
+        });
+        
+        btnAdopciones.addActionListener(e -> {
+            AdopcionesVistaFrame adopcionesVista = new AdopcionesVistaFrame();
+            adopcionesVista.setVisible(true);
         });
         btnReportes.addActionListener(e -> new MenuReportes(this));
         btnProcedimientos.addActionListener(e -> new MenuProcedimientos(this));
@@ -46,6 +53,7 @@ public class MenuPrincipal extends JFrame {
         add(btnDuenos);
         add(btnMascotas);
         add(btnReportes);
+        add(btnAdopciones);
         add(btnProcedimientos);
         add(btnCitasMedicas);
         add(btnVacunas);

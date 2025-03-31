@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.DuenoControlador;
+import Inicio.MenuPrincipal;
 import Modelo.Dueno;
 import Modelo.DuenoDAO;
 import javax.swing.JOptionPane;
@@ -276,7 +277,9 @@ private DuenoControlador duenoControlador;
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -308,6 +311,7 @@ private DuenoControlador duenoControlador;
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         DuenoVistaFrame duenoVista = new DuenoVistaFrame(); // Crear la ventana
     duenoVista.setVisible(true); // Hacerla visible
         

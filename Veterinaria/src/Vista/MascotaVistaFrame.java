@@ -408,7 +408,13 @@ public class MascotaVistaFrame extends javax.swing.JFrame {
         String sexo = txtSexo.getText();
         String micro = txtMicrochip.getText();
         String foto = txtFoto.getText();
-        int dueno = Integer.parseInt(txtDueno.getText());
+        
+        Integer duenoId = null;
+        if (!txtDueno.getText().trim().isEmpty()) {
+            duenoId = Integer.parseInt(txtDueno.getText().trim());
+        }
+        
+       // int dueno = Integer.parseInt(txtDueno.getText());
         
 
         // Verificar que los campos no estén vacíos
@@ -417,26 +423,26 @@ public class MascotaVistaFrame extends javax.swing.JFrame {
             return;}
 
         if  (especie.isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog(this, "La Cedula es obligatoria.");
+            javax.swing.JOptionPane.showMessageDialog(this, "La Especie es obligatoria.");
 
             return;}
 
         if (raza.isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog(this, "El Telefono es obligatorio.");
+            javax.swing.JOptionPane.showMessageDialog(this, "La Raza es obligatoria.");
             return;}
 
         // Crear objeto dueño
-        Mascota nuevaMascota = new Mascota(nombre, especie, raza, edad, fechaNac, sexo, micro, foto, dueno);
+        Mascota nuevaMascota = new Mascota(nombre, especie, raza, edad, fechaNac, sexo, micro, foto, duenoId);
 
         // Llamar al controlador para agregarlo
         MascotaControlador controlador = new MascotaControlador(mascotaDAO, duenoDAO);
         boolean agregado = controlador.agregarMascota(nuevaMascota);
 
         if (agregado) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Dueño agregado exitosamente.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Mascota agregada exitosamente.");
             limpiarCampos();
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al agregar el dueño.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al agregar mascota.");
         }
 
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -450,8 +456,7 @@ public class MascotaVistaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-
+       this.setVisible(false);
         MascotaVistaEliminarFrame mascotaVistaEliminar = new MascotaVistaEliminarFrame();
 
         mascotaVistaEliminar.setVisible(true);
@@ -459,9 +464,9 @@ public class MascotaVistaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIdActionPerformed
-        // TODO add your handling code here
-        DuenoVistaBuscarIdFrame duenoVista = new DuenoVistaBuscarIdFrame();
-        duenoVista.setVisible(true);
+        this.setVisible(false);
+        MascotaVistaBuscarIdFrame mascotaVista = new MascotaVistaBuscarIdFrame();
+        mascotaVista.setVisible(true);
 
     }//GEN-LAST:event_btnBuscarIdActionPerformed
 
@@ -473,6 +478,7 @@ public class MascotaVistaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+        this.setVisible(false);
         MascotaVistaActualizarFrame mascotaActualizar = new MascotaVistaActualizarFrame();
         mascotaActualizar.setVisible(true);
     }//GEN-LAST:event_btnSalir1ActionPerformed

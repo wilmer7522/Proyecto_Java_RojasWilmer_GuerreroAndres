@@ -333,14 +333,15 @@ private DuenoDAO duenoDAO;
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
         DuenoVistaActualizarFrame duenoVistaActualizar = new DuenoVistaActualizarFrame(); // Crear la ventana
     duenoVistaActualizar.setVisible(true); // Hacerla visible
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIdActionPerformed
-        // TODO add your handling code here
-        DuenoVistaBuscarIdFrame duenoVista = new DuenoVistaBuscarIdFrame(); // Crear la ventana
+        this.setVisible(false);
+        DuenoVistaBuscarIdFrame duenoIdVista = new DuenoVistaBuscarIdFrame();
+        duenoIdVista.setVisible(true);
     
     
 
@@ -355,7 +356,7 @@ private DuenoDAO duenoDAO;
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
         
         DuenoVistaEliminarFrame duenoVistaEliminar = new DuenoVistaEliminarFrame();// Crea una nueva ventana de Dueño
        
