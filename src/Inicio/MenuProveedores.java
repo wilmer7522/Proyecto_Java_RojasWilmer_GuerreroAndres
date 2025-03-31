@@ -1,7 +1,6 @@
 package Inicio;
 
 import Vista.VentanaProveedores;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +8,7 @@ import java.sql.SQLException;
 
 public class MenuProveedores extends JFrame {
     public MenuProveedores() {
-        setTitle("Menú de Proveedores");
+        setTitle("Menu de Proveedores");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);

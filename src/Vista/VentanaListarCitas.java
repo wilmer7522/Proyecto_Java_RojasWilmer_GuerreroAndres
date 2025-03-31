@@ -1,6 +1,5 @@
 package Vista;
 
-import Inicio.MenuPrincipal;
 import Modelo.CitaMedica;
 import Modelo.ConsultasMedica;
 import Modelo.ConsultasMedicaDAO;
@@ -34,9 +33,7 @@ public class VentanaListarCitas extends JFrame {
 
         btnActualizar.addActionListener(e -> actualizarLista());
         btnEliminar.addActionListener(e -> eliminarCitaSeleccionada());
-        btnVolver.addActionListener(e -> {
-            new MenuPrincipal();
-        });
+        btnVolver.addActionListener(e -> dispose());
 
         JPanel panelBotones = new JPanel();
         panelBotones.add(btnActualizar);

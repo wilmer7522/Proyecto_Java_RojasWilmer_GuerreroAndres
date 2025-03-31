@@ -15,7 +15,7 @@ public class LoginDuenos extends JFrame {
 
     static {
         credenciales.put("admin", "1234");
-        credenciales.put("cliente", "5678");
+        credenciales.put("veterinario", "5678");
     }
 
     public LoginDuenos() {
@@ -41,7 +41,7 @@ public class LoginDuenos extends JFrame {
         txtPassword.setBounds(100, 60, 150, 25);
         add(txtPassword);
 
-        btnLogin = new JButton("Iniciar sesión");
+        btnLogin = new JButton("Iniciar sesion");
         btnLogin.setBounds(80, 100, 130, 30);
         add(btnLogin);
 
@@ -69,7 +69,7 @@ public class LoginDuenos extends JFrame {
         String password = new String(txtPassword.getPassword());
 
         if (credenciales.containsKey(usuario) && credenciales.get(usuario).equals(password)) {
-            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+            JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso");
             this.dispose();
             Main.mostrarMenu();
         } else {

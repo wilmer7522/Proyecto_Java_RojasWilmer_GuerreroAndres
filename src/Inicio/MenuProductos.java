@@ -2,6 +2,7 @@ package Inicio;
 
 import Modelo.ProductoDAO;
 import Modelo.Productos;
+import Vista.VentanaActualizarProducto;
 import Vista.VentanaAgregarProducto;
 import Vista.VentanaListarProductos;
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class MenuProductos extends JFrame {
         setSize(400, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(6, 1));
+        setLayout(new GridLayout(5, 1));
 
         JButton btnVerProductos = new JButton("Ver Productos");
         JButton btnAgregarProductos = new JButton("Agregar Productos");
@@ -33,22 +34,19 @@ public class MenuProductos extends JFrame {
         btnVerProductos.addActionListener(e -> {
             if (ventanaListarProductos == null) {
                 ventanaListarProductos = new VentanaListarProductos(productoDAO.obtenerProductos());
-            } else {
-                ventanaListarProductos.setVisible(true);
             }
+            ventanaListarProductos.setVisible(true);
         });
 
         btnAgregarProductos.addActionListener(e ->
                 new VentanaAgregarProducto(this, ventanaListarProductos)
         );
 
-        btnActualizarProductos.addActionListener(e -> {
-            if (ventanaListarProductos != null) {
-                ventanaListarProductos.actualizarTabla(productoDAO.obtenerProductos());
-            } else {
-                System.err.println("No se puede agregar productos");
-            }
-        });
+        btnActualizarProductos.addActionListener(e ->
+                new VentanaActualizarProducto(this)
+        );
+
+        btnEliminarProductos.addActionListener(e -> eliminarProducto());
 
         btnSalir.addActionListener(e -> {
             dispose();
@@ -61,5 +59,29 @@ public class MenuProductos extends JFrame {
         add(btnEliminarProductos);
         add(btnSalir);
         setVisible(true);
+    }
+
+    public void actualizarListaProductos() {
+        if (ventanaListarProductos != null) {
+            ventanaListarProductos.actualizarTabla(productoDAO.obtenerProductos());
+        }
+    }
+
+    private void eliminarProducto() {
+        String idStr = JOptionPane.showInputDialog("Ingrese el ID del producto a eliminar:");
+        if (idStr != null && !idStr.trim().isEmpty()) {
+            try {
+                int id = Integer.parseInt(idStr);
+                boolean eliminado = productoDAO.eliminarProducto(id);
+                if (eliminado) {
+                    JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente.");
+                    actualizarListaProductos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar el producto");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "ID invalido");
+            }
+        }
     }
 }

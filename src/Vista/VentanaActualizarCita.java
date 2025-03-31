@@ -2,7 +2,6 @@ package Vista;
 
 import Modelo.ConsultasMedica;
 import Modelo.ConsultasMedicaDAO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -82,4 +81,3 @@ public class VentanaActualizarCita extends JFrame {
         }
     }
 }
-

@@ -14,26 +14,26 @@ public class MenuConsultasMedicas extends JFrame {
     public MenuConsultasMedicas() {
         citaDAO = new ConsultasMedicaDAO();
 
-        setTitle("Gestion de Citas Medicas");
+        setTitle("Gestion de Consultas Medicas");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(5, 1));
 
         JButton btnVerCitas = new JButton("Ver Citas");
-        JButton btnAgregarCita = new JButton("Agregar Cita");
-        JButton btnActualizarCita = new JButton("Actualizar Cita");
-        JButton btnEliminarCita = new JButton("Eliminar Cita");
+        JButton btnAgregarConsulta = new JButton("Agregar Consulta");
+        JButton btnActualizarCita = new JButton("Actualizar Consulta");
+        JButton btnEliminarCita = new JButton("Eliminar Consulta");
         JButton btnSalir = new JButton("Salir");
 
         btnVerCitas.addActionListener(e -> new VentanaListarCitas(citaDAO));
-        btnAgregarCita.addActionListener(e -> new VentanaAgregarCita(citaDAO));
+        btnAgregarConsulta.addActionListener(e -> new VentanaAgregarCita(citaDAO));
         btnActualizarCita.addActionListener(e -> new VentanaActualizarCita(citaDAO));
         btnEliminarCita.addActionListener(e -> new VentanaEliminarCita(citaDAO));
         btnSalir.addActionListener(e -> dispose());
 
         add(btnVerCitas);
-        add(btnAgregarCita);
+        add(btnAgregarConsulta);
         add(btnActualizarCita);
         add(btnEliminarCita);
         add(btnSalir);

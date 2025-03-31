@@ -19,19 +19,22 @@ public class VentanaListarProductos extends JFrame {
 
         String[] columnas = {"ID", "Nombre", "Tipo", "Fabricante", "Stock", "Vence", "Proveedor"};
         modelo = new DefaultTableModel(columnas, 0);
-        actualizarTabla(productos);
-
         tablaProductos = new JTable(modelo);
         JScrollPane scrollPane = new JScrollPane(tablaProductos);
+        actualizarTabla(productos);
 
         JButton btnVolver = new JButton("Volver");
         btnVolver.addActionListener(e -> dispose());
 
         add(scrollPane, BorderLayout.CENTER);
         add(btnVolver, BorderLayout.SOUTH);
+
+        setVisible(true);
     }
 
     public void actualizarTabla(List<Productos> productos) {
+        if (modelo == null) return;
+
         modelo.setRowCount(0);
         for (Productos p : productos) {
             modelo.addRow(new Object[]{

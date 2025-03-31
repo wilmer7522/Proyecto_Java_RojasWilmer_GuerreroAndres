@@ -24,8 +24,7 @@ public class ProcedimientosDAO {
                 "FROM procedimientos_medicos pm " +
                 "JOIN mascotas m ON pm.mascota_id = m.id " +
                 "JOIN veterinarios v ON pm.veterinario_id = v.id " +
-                "JOIN inventario i ON pm.inventario_id = i.id " +
-                "ORDER BY pm.fecha DESC";
+                "JOIN inventario i ON pm.inventario_id = i.id ";
 
         try (Connection conn = DriverManager.getConnection(URL, USUARIO, PASSWORD);
              Statement stmt = conn.createStatement();

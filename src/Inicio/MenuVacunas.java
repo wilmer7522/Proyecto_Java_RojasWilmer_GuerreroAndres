@@ -1,11 +1,11 @@
 package Inicio;
 
 import Vista.VentanaVacunas;
-
+import Modelo.ConexionDB;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
+import java.sql.Connection;
 
 public class MenuVacunas extends JFrame {
     public MenuVacunas() {
@@ -29,17 +29,17 @@ public class MenuVacunas extends JFrame {
                 dispose();
                 new MenuPrincipal();
             }
-
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
         });
 
         btnGestionarVacunas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    new VentanaVacunas();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                Connection conexion = ConexionDB.getConnection();
+
+                if (conexion != null) {
+                    new VentanaVacunas().setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error de conexion con la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

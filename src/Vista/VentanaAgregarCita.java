@@ -12,7 +12,7 @@ public class VentanaAgregarCita extends JFrame {
     public VentanaAgregarCita(ConsultasMedicaDAO consultasMedicaDAO) {
         this.consultasMedicaDAO = consultasMedicaDAO;
 
-        setTitle("Agregar Cita Médica");
+        setTitle("Agregar Consulta Medica");
         setSize(400, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -70,7 +70,7 @@ public class VentanaAgregarCita extends JFrame {
             CitaMedica nuevaCita = new CitaMedica(0, fechaHora, mascota, dueno, veterinario, estado, diagnostico, prescripcion);
 
             if (consultasMedicaDAO.insertarCita(nuevaCita)) {
-                JOptionPane.showMessageDialog(this, "Cita agregada con exito");
+                JOptionPane.showMessageDialog(this, "Consulta agregada con exito");
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Error al agregar la cita");
