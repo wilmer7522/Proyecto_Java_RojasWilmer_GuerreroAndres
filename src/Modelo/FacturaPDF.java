@@ -112,11 +112,4 @@ public void escribirFactura(int facturaId) {
         document.close();
     }
 }
-
-public static void main(String[] args) {
-        int facturaId = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la factura:"));
-        FacturaPDF obj = new FacturaPDF();
-        obj.escribirFactura(facturaId);
-    }
-
 }

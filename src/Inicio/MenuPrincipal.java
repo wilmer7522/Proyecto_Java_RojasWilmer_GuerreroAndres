@@ -83,7 +83,11 @@ public class MenuPrincipal extends JFrame {
         btnDetallesFacturas.addActionListener( e-> new MenuDetallesFactura().setVisible(true));
         btnClientesFrecuentes.addActionListener( e -> new MenuClientesFrecuentes().setVisible(true));
         btnFacturas.addActionListener( e -> new MenuFacturas().setVisible(true));
-        btnDescargar.addActionListener( e -> new FacturaPDF());
+        btnDescargar.addActionListener( e -> {
+            int facturaId = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la factura:"));
+            FacturaPDF obj = new FacturaPDF();
+            obj.escribirFactura(facturaId);
+        });
         btnSalir.addActionListener(e -> System.exit(0));
 
         add(lblTitulo);
