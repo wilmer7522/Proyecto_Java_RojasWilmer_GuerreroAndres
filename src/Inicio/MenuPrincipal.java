@@ -1,6 +1,7 @@
 package Inicio;
 
 import Modelo.FacturaPDF;
+import Vista.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,20 +17,54 @@ public class MenuPrincipal extends JFrame {
         JLabel lblTitulo = new JLabel("Bienvenido al sistema de la veterinaria Happy Feet", SwingConstants.CENTER);
         JButton btnProductos = new JButton("Gestion de Productos");
         JButton btnDuenos = new JButton("Gestion de Dueños");
-        JButton btnReportes = new JButton("Gestion de reportes");
-        JButton btnProcedimientos = new JButton("Gestion de procedimientos medicos");
-        JButton btnConsultasMedicas = new JButton("Gestion de consultas medicas");
-        JButton btnVacunas = new JButton("Gestion de vacunas");
-        JButton btnProveedores = new JButton("Gestion de proveedores");
-        JButton btnTratamiento = new JButton("Gestion de tratamiento antiparasitarios");
-        JButton btnDetalles = new JButton("Gestion de detalles en facturas");
-        JButton btnHistorial = new JButton("Gestion de historial medico");
-        JButton btnDetallesFacturas = new JButton("Gestion de detalle de inventario en facturas");
+        JButton btnMascotas = new JButton("Gestion de Mascotas");
+        JButton btnVeterinarios = new JButton("Gestion de Veterinarios");
+        JButton btnReportes = new JButton("Gestion de Reportes");
+        JButton btnProcedimientos = new JButton("Gestion de Procedimientos Medicos");
+        JButton btnCitasMedicas = new JButton("Gestion de Citas medicas");
+        JButton btnConsultasMedicas = new JButton("Gestion de Consultas Medicas");
+        JButton btnVacunas = new JButton("Gestion de Vacunas");
+        JButton btnAdopciones = new JButton("Gestion de Adopciones");
+        JButton btnProveedores = new JButton("Gestion de Proveedores");
+        JButton btnTratamiento = new JButton("Gestion de Tratamiento Antiparasitarios");
+        JButton btnDetalles = new JButton("Gestion de detalles en Facturas");
+        JButton btnHistorial = new JButton("Gestion de Historial Medico");
+        JButton btnDetallesFacturas = new JButton("Gestion de Detalle de Inventario en Facturas");
         JButton btnFacturas = new JButton("Gestion de Facturas");
         JButton btnDescargar = new JButton("Descargar Factura");
         JButton btnSalir = new JButton("Salir");
 
         btnProductos.addActionListener(e -> new MenuProductos().setVisible(true));
+        btnDuenos.addActionListener(e -> {
+            this.setVisible(false);
+            DuenoVistaFrame duenoVista = new DuenoVistaFrame();
+            duenoVista.setVisible(true);
+        });
+
+        btnMascotas.addActionListener(e -> {
+            this.setVisible(false);
+            MascotaVistaFrame mascotaVista = new MascotaVistaFrame();
+            mascotaVista.setVisible(true);
+        });
+
+        btnAdopciones.addActionListener(e -> {
+            this.setVisible(false);
+            AdopcionesVistaFrame adopcionesVista = new AdopcionesVistaFrame();
+            adopcionesVista.setVisible(true);
+        });
+
+        btnVeterinarios.addActionListener(e -> {
+            this.setVisible(false);
+            VeterinarioVistaFrame veterinarioVista = new VeterinarioVistaFrame();
+            veterinarioVista.setVisible(true);
+        });
+
+        btnCitasMedicas.addActionListener(e -> {
+            this.setVisible(false);
+            CitasMedicasVistaFrame citasMedicasVista = new CitasMedicasVistaFrame();
+        citasMedicasVista.setVisible(true);    });
+
+
         btnReportes.addActionListener(e -> new MenuReportes(this).setVisible(true));
         btnProcedimientos.addActionListener(e -> new MenuProcedimientos(this).setVisible(true));
         btnConsultasMedicas.addActionListener(e -> new MenuConsultasMedicas().setVisible(true));
@@ -46,8 +81,12 @@ public class MenuPrincipal extends JFrame {
         add(lblTitulo);
         add(btnProductos);
         add(btnDuenos);
+        add(btnMascotas);
+        add(btnVeterinarios);
+        add(btnAdopciones);
         add(btnReportes);
         add(btnProcedimientos);
+        add(btnCitasMedicas);
         add(btnConsultasMedicas);
         add(btnVacunas);
         add(btnProveedores);
