@@ -15,9 +15,9 @@ public class MenuPrincipal extends JFrame {
 
         JLabel lblTitulo = new JLabel("Bienvenido al sistema de la veterinaria Happy Feet", SwingConstants.CENTER);
         JButton btnProductos = new JButton("Gestion de Productos");
-        JButton btnDuenos = new JButton("Gestion de dueños");
+        JButton btnDuenos = new JButton("Gestion de Dueños");
         JButton btnReportes = new JButton("Gestion de reportes");
-        JButton btnProcedimientos = new JButton("Gestion de rocedimientos medicos");
+        JButton btnProcedimientos = new JButton("Gestion de procedimientos medicos");
         JButton btnConsultasMedicas = new JButton("Gestion de consultas medicas");
         JButton btnVacunas = new JButton("Gestion de vacunas");
         JButton btnProveedores = new JButton("Gestion de proveedores");

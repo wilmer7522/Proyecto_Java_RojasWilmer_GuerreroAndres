@@ -50,7 +50,7 @@ public class FacturaPDF {
                     ResultSet rs = stmt.executeQuery();
 
                     if (!rs.next()) {
-                        JOptionPane.showMessageDialog(null, "No se encontró la factura con ID " + facturaId);
+                        JOptionPane.showMessageDialog(null, "No se encontro la factura con el ID " + facturaId);
                         return;
                     }
 
@@ -64,23 +64,33 @@ public class FacturaPDF {
                         document.add(new Paragraph("Cantidad: " + rs.getInt("cantidad"), contentFont));
                         document.add(new Paragraph("Precio Unitario: $" + rs.getDouble("precio_unitario"), contentFont));
                         document.add(new Paragraph("Subtotal: $" + rs.getDouble("subtotal"), contentFont));
+                        document.add(new Paragraph("Total: $" + rs.getDouble("subtotal"), contentFont));
                         document.add(new Paragraph("CUFE: " + rs.getString("cufe"), contentFont));
+                        document.add(new Paragraph("Codigo_qr: " + rs.getString("codigo_qr"), contentFont));
                         document.add(new Paragraph("\n--------------------------------------------\n"));
 
                     } while (rs.next());
 
                     String codigoQR = rs.getString("codigo_qr");
 
-                    if (codigoQR != null) {
-                        InputStream is = getClass().getClassLoader().getResourceAsStream("imagenes/Codigo_QR.png");
-                        if (is != null) {
-                            byte[] bytes = is.readAllBytes();
-                            Image qrImage = Image.getInstance(bytes);
-                            qrImage.scaleAbsolute(100, 100);
-                            document.add(qrImage);
-                        } else {
-                            document.add(new Paragraph("No se encontró la imagen del código QR", contentFont));
+                    if (codigoQR != null && !codigoQR.isEmpty()) {
+                        try {
+                            InputStream is = getClass().getClassLoader().getResourceAsStream("imagenes/Codigo_QR.png");
+
+                            if (is != null) {
+                                byte[] bytes = is.readAllBytes();
+                                Image qrImage = Image.getInstance(bytes);
+                                qrImage.scaleAbsolute(100, 100);
+                                qrImage.setAlignment(Element.ALIGN_CENTER);
+                                document.add(qrImage);
+                            } else {
+                                document.add(new Paragraph("No se encontró la imagen del código QR en 'imagenes/Codigo_QR.png'", contentFont));
+                            }
+                        } catch (Exception e) {
+                            document.add(new Paragraph("Error al cargar la imagen del código QR: " + e.getMessage(), contentFont));
                         }
+                    } else {
+                        document.add(new Paragraph("No hay código QR disponible", contentFont));
                     }
                 }
             }
