@@ -9,7 +9,7 @@ import java.awt.*;
 public class MenuPrincipal extends JFrame {
     public MenuPrincipal() {
         setTitle("Menu Principal");
-        setSize(400, 300);
+        setSize(1400, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridLayout(8, 1));
