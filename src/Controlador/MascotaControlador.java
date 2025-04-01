@@ -11,10 +11,6 @@ import Modelo.DuenoDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-
-
-
-
 public class MascotaControlador {
 
     private MascotaDAO mascotaDAO;

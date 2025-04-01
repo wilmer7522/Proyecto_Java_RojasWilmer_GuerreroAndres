@@ -31,6 +31,7 @@ public class MenuPrincipal extends JFrame {
         JButton btnHistorial = new JButton("Gestion de Historial Medico");
         JButton btnDetallesFacturas = new JButton("Gestion de Detalle de Inventario en Facturas");
         JButton btnFacturas = new JButton("Gestion de Facturas");
+        JButton btnClientesFrecuentes = new JButton("Gestion de Clientes Frecuentes");
         JButton btnDescargar = new JButton("Descargar Factura");
         JButton btnSalir = new JButton("Salir");
 
@@ -59,6 +60,12 @@ public class MenuPrincipal extends JFrame {
             veterinarioVista.setVisible(true);
         });
 
+        btnClientesFrecuentes.addActionListener(e -> {
+            this.setVisible(false);
+            MenuClientesFrecuentes menuClientesFrecuentes = new MenuClientesFrecuentes();
+            menuClientesFrecuentes.setVisible(true);
+        });
+
         btnCitasMedicas.addActionListener(e -> {
             this.setVisible(false);
             CitasMedicasVistaFrame citasMedicasVista = new CitasMedicasVistaFrame();
@@ -74,6 +81,7 @@ public class MenuPrincipal extends JFrame {
         btnDetalles.addActionListener( e-> new MenuDetallesFactura().setVisible(true));
         btnHistorial.addActionListener(e -> new MenuHistorialMedico().setVisible(true));
         btnDetallesFacturas.addActionListener( e-> new MenuDetallesFactura().setVisible(true));
+        btnClientesFrecuentes.addActionListener( e -> new MenuClientesFrecuentes().setVisible(true));
         btnFacturas.addActionListener( e -> new MenuFacturas().setVisible(true));
         btnDescargar.addActionListener( e -> new FacturaPDF());
         btnSalir.addActionListener(e -> System.exit(0));
@@ -95,6 +103,7 @@ public class MenuPrincipal extends JFrame {
         add(btnHistorial);
         add(btnDetallesFacturas);
         add(btnFacturas);
+        add(btnClientesFrecuentes);
         add(btnDescargar);
         add(btnSalir);
     }

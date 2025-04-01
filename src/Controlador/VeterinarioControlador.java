@@ -9,10 +9,6 @@ import Modelo.VeterinarioDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author wilmer
- */
 public class VeterinarioControlador {
     
     private VeterinarioDAO veterinarioDAO;

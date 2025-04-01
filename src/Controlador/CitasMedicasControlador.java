@@ -9,10 +9,6 @@ import Modelo.CitasMedicasDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author wilmer
- */
 public class CitasMedicasControlador {
     
     private CitasMedicasDAO citasMedicasDAO;

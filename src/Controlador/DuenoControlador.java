@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author wilmer
- */
 public class DuenoControlador{
     
     
