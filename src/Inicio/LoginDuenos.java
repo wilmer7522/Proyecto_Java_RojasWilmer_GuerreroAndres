@@ -20,7 +20,7 @@ public class LoginDuenos extends JFrame {
 
     public LoginDuenos() {
         setTitle("Login Dueños");
-        setSize(500, 400);
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
