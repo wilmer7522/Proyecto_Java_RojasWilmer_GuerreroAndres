@@ -18,10 +18,15 @@ public class FacturaPDF {
             PdfWriter.getInstance(document, new FileOutputStream("Factura.pdf"));
             document.open();
 
-            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLUE);
-            Paragraph title = new Paragraph("Factura PDF", titleFont);
+            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.RED);
+            Paragraph title = new Paragraph("Clinica Veterinaria Happy Feet", titleFont);
+            Paragraph info = new Paragraph("Factura Numero: " + facturaId);
+
             title.setAlignment(Element.ALIGN_CENTER);
+            info.setAlignment(Element.ALIGN_LEFT);
+
             document.add(title);
+            document.add(info);
 
             document.add(new Paragraph("\n"));
 

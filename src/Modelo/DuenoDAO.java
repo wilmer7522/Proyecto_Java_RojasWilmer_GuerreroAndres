@@ -57,7 +57,7 @@ public class DuenoDAO {
     }
 
     //Leer
-    
+    //
     public List<Dueno> obtenerDuenos() {
         List<Dueno> listaDuenos = new ArrayList<>();
         String sql = "select * from duenos";
@@ -117,6 +117,8 @@ public class DuenoDAO {
     //Actualizar Dueno
     public boolean actualizarDueno(Dueno dueno) {
         
+        
+
     String sql = "UPDATE duenos SET  nombre = ?, direccion = ?, telefono = ?, correo_electronico = ?, contacto_emergencia = ? WHERE cedula = ?";
     
     try (Connection conexionInterna = conectar(); PreparedStatement solicitud = conexionInterna.prepareStatement(sql)) {
@@ -127,7 +129,15 @@ public class DuenoDAO {
         solicitud.setString(4, dueno.getCorreo_electronico());
         solicitud.setString(5, dueno.getContacto_emergencia());
         solicitud.setString(6, dueno.getCedula());
-         
+        
+        
+        
+       
+
+        
+        
+        
+        
         int filasActualizadas = solicitud.executeUpdate();
         
         return filasActualizadas > 0;
@@ -161,7 +171,7 @@ public class DuenoDAO {
     }
 }
     
-    //Buscar Dueno por cedula
+    
     public Dueno obtenerDuenoPorCedula(String cedula) {
     Dueno dueno = null;
     String sql = "SELECT * FROM duenos WHERE cedula = ?";
